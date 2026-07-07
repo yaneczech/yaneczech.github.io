@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Portfolio produktového UI designéra a frontendisty: návrh rozhraní, HTML/CSS implementace a přístupnost."
+    />
+    <meta name="theme-color" content="#faf6ee" />
+    <title>Jan Janeček — produktový UI design & frontend</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#obsah">Přeskočit na obsah</a>
+
+    <header class="site-header" aria-label="Hlavní navigace">
+      <a class="brand" href="#obsah" aria-label="Jan Janeček">
+        <span>Jan Janeček</span>
+      </a>
+
+      <nav class="top-links" aria-label="Externí odkazy">
+        <a href="https://www.linkedin.com/" rel="noreferrer" target="_blank">LinkedIn</a>
+        <a href="https://github.com/yaneczech" rel="noreferrer" target="_blank">GitHub</a>
+        <a href="mailto:jan@example.com">Kontakt</a>
+      </nav>
+    </header>
+
+    <main id="obsah" class="page-shell">
+      <section class="portfolio-layout" aria-label="Portfolio projektů">
+        <aside class="project-index" aria-labelledby="project-index-title">
+          <div class="index-sticky">
+            <div class="index-heading">
+              <h2 id="project-index-title">Projekty</h2>
+            </div>
+
+            <nav id="project-list" class="project-list" aria-label="Seznam projektů"></nav>
+          </div>
+        </aside>
+
+        <article id="project-detail" class="project-detail" aria-live="polite"></article>
+      </section>
+    </main>
+
+    <script src="projects.js?v=20260707-annotation"></script>
+    <script src="app.js?v=20260707-annotation"></script>
+  </body>
+</html>
