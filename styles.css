@@ -6,8 +6,8 @@
   --quiet: #9e968b;
   --line: #e5ddd0;
   --line-strong: #111111;
-  --accent: #b7895f;
-  --accent-dark: #755537;
+  --accent: #86938c;
+  --accent-dark: #5f6e66;
   --surface: #f2ece1;
   --surface-2: #ebe1d2;
   --focus: #755537;
@@ -100,7 +100,7 @@ button {
 
 .brand {
   font-size: 18px;
-  font-weight: 620;
+  font-weight: 500;
   letter-spacing: normal;
   text-decoration: none;
 }
@@ -217,7 +217,7 @@ button {
 .project-link:hover,
 .project-link.is-active {
   color: var(--accent-dark);
-  background: #86938c;
+  background: #656f69;
 }
 
 .project-link.is-active {
