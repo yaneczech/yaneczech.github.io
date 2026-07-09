@@ -543,7 +543,8 @@ select,
 
 .case-nav a:hover {
   color: var(--text);
- border-top: 1px solid var(--accent);
+ border-top: 2px solid var(--text);
+ box-sizing: border-box;
 }
 
 @media (max-width: 1060px) {
