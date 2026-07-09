@@ -155,7 +155,7 @@ button {
   top: 38px;
   z-index: 2;
   width: 34px;
-  height: 61px;
+  height: 100%;
   pointer-events: none;
 }
 
@@ -214,7 +214,10 @@ button {
   color: var(--muted);
 }
 
-.project-link:hover,
+.project-link:hover {
+  color: var(--text);
+}
+
 .project-link.is-active {
   color: var(--accent-dark);
   background: #e1e7e4;
