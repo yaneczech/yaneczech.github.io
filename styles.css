@@ -486,6 +486,7 @@ select,
 .hotspot-tooltip strong {
   font-size: 14px;
   line-height: 1.15;
+  font-weight: 400;
 }
 
 .hotspot-tooltip span {
