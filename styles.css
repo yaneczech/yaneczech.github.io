@@ -526,6 +526,8 @@ select,
   font-size: 15px;
   line-height: 1.25;
   letter-spacing: normal;
+  border-top: 2px solid transparent;
+  box-sizing: border-box; 
 }
 
 .case-nav a + a {
@@ -544,7 +546,6 @@ select,
 .case-nav a:hover {
   color: var(--text);
  border-top: 2px solid var(--text);
- box-sizing: border-box; 
 }
 
 @media (max-width: 1060px) {
