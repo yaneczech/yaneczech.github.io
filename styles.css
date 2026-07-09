@@ -542,7 +542,7 @@ select,
 }
 
 .case-nav a:hover {
- border-color: var(--accent);
+  color: var(--text);
  border-top: 1px solid var(--accent);
 }
 
