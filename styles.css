@@ -528,6 +528,7 @@ select,
   letter-spacing: normal;
   border-top: 2px solid transparent;
   box-sizing: border-box; 
+  min-width: 120px;
 }
 
 .case-nav a + a {
