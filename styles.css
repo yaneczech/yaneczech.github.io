@@ -274,7 +274,7 @@ button {
   max-width: 62ch;
   margin: 0;
   color: var(--muted);
-  font-size: clamp(17px, 1.45vw, 21px);
+  font-size: clamp(16px, 1.45vw, 20px);
   line-height: 1.38;
   font-weight: 300;
 }
