@@ -217,7 +217,7 @@ button {
 .project-link:hover,
 .project-link.is-active {
   color: var(--accent-dark);
-  background: #656f69;
+  background: #d1dad5;
 }
 
 .project-link.is-active {
