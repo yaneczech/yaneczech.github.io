@@ -178,7 +178,7 @@ button {
   font-size: 18px;
   line-height: 1.2;
   letter-spacing: normal;
-  font-weight: 620;
+  font-weight: 500;
 }
 
 .project-list {
@@ -217,7 +217,7 @@ button {
 .project-link:hover,
 .project-link.is-active {
   color: var(--accent-dark);
-  background: #d1dad5;
+  background: #e1e7e4;
 }
 
 .project-link.is-active {
