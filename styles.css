@@ -326,6 +326,7 @@ select,
   gap: 8px;
   align-items: center;
   cursor: pointer;
+  min-width: 154px;
 }
 
 .annotation-toggle:hover {

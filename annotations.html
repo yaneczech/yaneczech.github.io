@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Pomocná stránka pro mapování anotačních bodů na screenshoty v portfoliu."
+    />
+    <meta name="theme-color" content="#faf6ee" />
+    <title>Mapování anotací — Jan Janeček</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="annotations.css" />
+  </head>
+  <body class="mapper-page">
+    <a class="skip-link" href="#mapper">Přeskočit na mapování</a>
+
+    <header class="site-header" aria-label="Pomocná navigace">
+      <a class="brand" href="index.html#vijual" aria-label="Zpět na portfolio">
+        <span>Jan Janeček</span>
+      </a>
+
+      <nav class="top-links" aria-label="Pomocné odkazy">
+        <a href="index.html#vijual">Portfolio</a>
+        <a href="projects.js">Data projektů</a>
+      </nav>
+    </header>
+
+    <main id="mapper" class="mapper-shell">
+      <section class="mapper-intro" aria-labelledby="mapper-title">
+        <div>
+          <p class="mapper-kicker">Pomocný nástroj</p>
+          <h1 id="mapper-title">Mapování anotačních bodů</h1>
+        </div>
+        <p>
+          Vyber projekt a screenshot, případně nahraj lokální obrázek pro přesný
+          náhled. Kliknutím do obrázku přidáš bod, tažením ho doladíš a výstup
+          zkopíruješ zpět do <code>projects.js</code>.
+        </p>
+      </section>
+
+      <section class="mapper-grid" aria-label="Editor anotačních bodů">
+        <aside class="mapper-controls" aria-label="Nastavení mapování">
+          <label class="mapper-field">
+            <span>Projekt</span>
+            <select id="mapper-project"></select>
+          </label>
+
+          <label class="mapper-field">
+            <span>Screenshot</span>
+            <select id="mapper-screen"></select>
+          </label>
+
+          <label class="mapper-file">
+            <span>Lokální náhled obrázku</span>
+            <input id="mapper-upload" type="file" accept="image/*" />
+          </label>
+
+          <div class="mapper-note">
+            Nahrání obrázku slouží jen pro tento náhled. Soubor se nikam
+            neukládá; výsledkem jsou pouze procenta <code>x</code> a <code>y</code>.
+          </div>
+
+          <div class="mapper-actions">
+            <button class="mapper-button" type="button" data-reset>
+              Načíst původní body
+            </button>
+            <button class="mapper-button" type="button" data-clear>
+              Smazat body
+            </button>
+          </div>
+        </aside>
+
+        <section class="mapper-workspace" aria-label="Náhled a body">
+          <header class="mapper-workspace-head">
+            <div>
+              <h2 id="mapper-screen-title">Screenshot</h2>
+              <p id="mapper-screen-caption"></p>
+            </div>
+            <p class="mapper-position" id="mapper-position">Klikni do obrázku</p>
+          </header>
+
+          <figure class="mapper-frame">
+            <div class="mapper-stage" id="mapper-stage">
+              <img id="mapper-image" alt="" />
+              <div class="mapper-empty" id="mapper-empty">
+                <span>náhled screenshotu</span>
+              </div>
+              <div class="mapper-layer" id="mapper-layer" aria-label="Anotační body"></div>
+            </div>
+          </figure>
+        </section>
+
+        <section class="mapper-panel" aria-label="Body a export">
+          <div class="mapper-panel-head">
+            <h2>Body</h2>
+            <p id="mapper-count">0 bodů</p>
+          </div>
+
+          <div class="mapper-list" id="mapper-list"></div>
+
+          <div class="mapper-panel-head mapper-output-head">
+            <h2>Výstup pro projects.js</h2>
+            <button class="mapper-button" type="button" data-copy>
+              Kopírovat
+            </button>
+          </div>
+
+          <textarea
+            id="mapper-output"
+            class="mapper-output"
+            spellcheck="false"
+            aria-label="Vygenerovaný kód hotspotů"
+          ></textarea>
+        </section>
+      </section>
+    </main>
+
+    <script src="projects.js?v=20260707-annotation"></script>
+    <script src="annotations.js?v=20260709-mapper"></script>
+  </body>
+</html>

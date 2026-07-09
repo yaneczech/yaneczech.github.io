@@ -1,0 +1,391 @@
+.mapper-page {
+  min-height: 100vh;
+}
+
+.mapper-shell {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 34px var(--gutter) var(--space-xl);
+}
+
+.mapper-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.7fr);
+  gap: clamp(28px, 7vw, 110px);
+  align-items: end;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.mapper-kicker {
+  margin: 0 0 10px;
+  color: var(--accent-dark);
+  font-size: 11px;
+  font-weight: 550;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.mapper-intro h1 {
+  max-width: 12ch;
+  margin: 0;
+  font-size: clamp(42px, 6vw, 86px);
+  font-weight: 100;
+  letter-spacing: normal;
+  line-height: 0.98;
+}
+
+.mapper-intro p:last-child {
+  max-width: 58ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(16px, 1.35vw, 19px);
+  font-weight: 300;
+  line-height: 1.42;
+}
+
+.mapper-intro code,
+.mapper-note code {
+  font: inherit;
+  color: var(--text);
+}
+
+.mapper-grid {
+  display: grid;
+  grid-template-columns: minmax(210px, 260px) minmax(0, 1fr) minmax(300px, 360px);
+  gap: 28px;
+  align-items: start;
+  padding-top: 28px;
+}
+
+.mapper-controls,
+.mapper-panel {
+  display: grid;
+  gap: 18px;
+}
+
+.mapper-field,
+.mapper-file {
+  display: grid;
+  gap: 7px;
+}
+
+.mapper-field span,
+.mapper-file span,
+.mapper-panel-head h2 {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 550;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.mapper-field select,
+.mapper-file input,
+.mapper-output,
+.mapper-input,
+.mapper-textarea {
+  width: 100%;
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+}
+
+.mapper-field select {
+  min-height: 42px;
+  padding: 8px 10px;
+  font-size: 14px;
+}
+
+.mapper-file input {
+  padding: 10px;
+  font-size: 13px;
+}
+
+.mapper-note {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.42;
+}
+
+.mapper-actions {
+  display: grid;
+  gap: 8px;
+}
+
+.mapper-button {
+  min-height: 36px;
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  background: transparent;
+  color: var(--text);
+  padding: 8px 12px;
+  font-size: 13px;
+  line-height: 1.15;
+  cursor: pointer;
+}
+
+.mapper-button:hover {
+  background: var(--text);
+  color: var(--background);
+}
+
+.mapper-workspace {
+  min-width: 0;
+}
+
+.mapper-workspace-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: end;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.mapper-workspace-head h2 {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 42px);
+  font-weight: 180;
+  letter-spacing: normal;
+  line-height: 1.04;
+}
+
+.mapper-workspace-head p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.mapper-position {
+  flex: 0 0 auto;
+  text-align: right;
+}
+
+.mapper-frame {
+  margin: 0;
+}
+
+.mapper-stage {
+  position: relative;
+  min-height: 420px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-top: 0;
+  background: var(--surface);
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.mapper-stage img {
+  display: none;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.mapper-stage.has-image {
+  min-height: 0;
+  background: #ffffff;
+}
+
+.mapper-stage.has-image img {
+  display: block;
+}
+
+.mapper-empty {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #9ea69f;
+  font-size: clamp(28px, 4vw, 54px);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.mapper-stage.has-image .mapper-empty {
+  display: none;
+}
+
+.mapper-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.mapper-hotspot {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  border: 2px solid #ffffff;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  cursor: grab;
+}
+
+.mapper-hotspot.is-active {
+  background: var(--accent-dark);
+}
+
+.mapper-hotspot:active {
+  cursor: grabbing;
+}
+
+.mapper-panel {
+  min-width: 0;
+}
+
+.mapper-panel-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: baseline;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.mapper-panel-head p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.mapper-output-head {
+  margin-top: 10px;
+}
+
+.mapper-list {
+  display: grid;
+  gap: 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.mapper-empty-list {
+  margin: 0;
+  padding: 14px 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.mapper-point {
+  display: grid;
+  gap: 12px;
+  padding: 14px 0 16px;
+  border-top: 1px solid var(--line);
+}
+
+.mapper-point:first-child {
+  border-top: 0;
+}
+
+.mapper-point-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.mapper-point-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 520;
+}
+
+.mapper-point-title span:first-child {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.mapper-remove {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 0;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.mapper-remove:hover {
+  color: var(--text);
+}
+
+.mapper-coordinates {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.mapper-input,
+.mapper-textarea {
+  padding: 8px 10px;
+  font-size: 13px;
+}
+
+.mapper-textarea {
+  min-height: 76px;
+  resize: vertical;
+}
+
+.mapper-output {
+  min-height: 260px;
+  padding: 12px;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+  line-height: 1.45;
+  resize: vertical;
+}
+
+@media (max-width: 1180px) {
+  .mapper-grid {
+    grid-template-columns: minmax(210px, 280px) minmax(0, 1fr);
+  }
+
+  .mapper-panel {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .mapper-intro,
+  .mapper-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mapper-workspace-head {
+    display: grid;
+  }
+
+  .mapper-position {
+    text-align: left;
+  }
+
+  .mapper-stage {
+    min-height: 340px;
+  }
+}

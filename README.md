@@ -59,6 +59,18 @@ Hotspoty jsou v procentech vůči screenshotu:
 
 `x` je vodorovná pozice, `y` je svislá pozice.
 
+### Pomocné mapování hotspotů
+
+Pro rychlé určení pozic otevři:
+
+```text
+http://localhost:8080/annotations.html
+```
+
+Stránka načte projekty z `projects.js`, dovolí nahrát lokální screenshot pro
+náhled a po kliknutí/tažení bodů vygeneruje blok `hotspots`, který můžeš vložit
+zpět k danému screenshotu.
+
 ## Publikace na GitHub Pages
 
 Repozitář `yaneczech.github.io` se po pushi na GitHub publikuje jako osobní GitHub Pages web.
