@@ -528,11 +528,6 @@ select,
   letter-spacing: normal;
 }
 
-.case-nav a:hover {
- border-color: var(--accent);
- border-top: 1px solid var(--accent);
-}
-
 .case-nav a + a {
   text-align: right;
   border-left: 0;
@@ -547,7 +542,8 @@ select,
 }
 
 .case-nav a:hover {
-  color: var(--text);
+ border-color: var(--accent);
+ border-top: 1px solid var(--accent);
 }
 
 @media (max-width: 1060px) {
