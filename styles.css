@@ -51,6 +51,10 @@ body::selection {
   color: #ffffff;
 }
 
+body.is-lightbox-open {
+  overflow: hidden;
+}
+
 a {
   color: inherit;
   text-decoration-thickness: 0.08em;
@@ -310,14 +314,32 @@ button {
 }
 
 select,
-.annotation-toggle {
+.annotation-toggle,
+.screen-open,
+.lightbox-close {
   min-height: 32px;
   border: 1px solid var(--line-strong);
-  border-radius: 999px;
   background: transparent;
   color: var(--text);
   padding: 6px 10px;
   font-size: 12px;
+  cursor: pointer;
+}
+
+select,
+.annotation-toggle {
+  border-radius: 999px;
+}
+
+.screen-open,
+.lightbox-close {
+  border-radius: 0;
+}
+
+.screen-open:hover,
+.lightbox-close:hover {
+  background: var(--text);
+  color: var(--background);
 }
 
 .annotation-toggle {
@@ -371,6 +393,48 @@ select,
   transform: translateX(18px);
 }
 
+.screen-switcher {
+  display: flex;
+  max-width: min(58vw, 760px);
+  overflow-x: auto;
+  border-left: 1px solid var(--line);
+  scrollbar-width: none;
+}
+
+.screen-switcher::-webkit-scrollbar {
+  display: none;
+}
+
+.screen-tab {
+  display: inline-grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  flex: 0 0 auto;
+  gap: 8px;
+  align-items: baseline;
+  min-height: 32px;
+  max-width: 240px;
+  border: 1px solid var(--line);
+  border-left: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 7px 11px 8px;
+  font-size: 12px;
+  line-height: 1.15;
+  text-align: left;
+  cursor: pointer;
+}
+
+.screen-tab span {
+  color: var(--quiet);
+  font-size: 10px;
+}
+
+.screen-tab:hover,
+.screen-tab.is-active {
+  color: var(--text);
+  background: #e1e7e4;
+}
+
 .screen-frame {
   position: relative;
   margin: 0;
@@ -387,11 +451,15 @@ select,
   aspect-ratio: 16 / 10;
 }
 
+.screen-canvas.has-image {
+  aspect-ratio: auto;
+}
+
 .screen-canvas img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
 }
 
 .screen-placeholder {
@@ -508,6 +576,89 @@ select,
   display: none;
 }
 
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: none;
+  overflow-y: auto;
+  background: color-mix(in srgb, var(--background) 96%, #ffffff 4%);
+  padding: 22px var(--gutter);
+}
+
+.lightbox.is-open {
+  display: block;
+}
+
+.lightbox-inner {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  max-width: min(1760px, 100%);
+  margin: 0 auto;
+}
+
+.lightbox-bar {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: end;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.lightbox-title {
+  display: grid;
+  gap: 5px;
+}
+
+.lightbox-title span {
+  color: var(--accent-dark);
+  font-size: 11px;
+  font-weight: 550;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.lightbox-title h2 {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 48px);
+  font-weight: 120;
+  line-height: 1.04;
+}
+
+.lightbox-figure {
+  display: grid;
+  min-height: 0;
+}
+
+.lightbox .screen-frame {
+  align-self: start;
+}
+
+.lightbox .screen-canvas {
+  border-top: 1px solid var(--line-strong);
+}
+
+.lightbox .screen-canvas.has-image {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  background: transparent;
+}
+
+.lightbox .screen-canvas.has-image img {
+  width: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 140px);
+}
+
+.lightbox .screen-placeholder {
+  position: relative;
+  min-height: min(70vh, 760px);
+}
+
 .case-nav {
   display: flex;
   justify-content: space-between;
@@ -528,7 +679,7 @@ select,
   letter-spacing: normal;
   border-top: 2px solid transparent;
   box-sizing: border-box; 
-  min-width: 120px;
+  min-width: 120px; 
 }
 
 .case-nav a + a {
@@ -601,9 +752,18 @@ select,
     grid-template-columns: 1fr;
   }
 
+  .screen-switcher {
+    max-width: 100%;
+  }
+
   .screen-canvas {
     min-height: 360px;
     aspect-ratio: 4 / 3;
+  }
+
+  .screen-canvas.has-image {
+    min-height: 0;
+    aspect-ratio: auto;
   }
 
   .project-link {
@@ -623,6 +783,24 @@ select,
     border-top: 1px solid var(--line);
     border-left: 0;
     text-align: left;
+  }
+
+  .lightbox {
+    padding: 16px var(--gutter);
+  }
+
+  .lightbox-bar {
+    display: grid;
+    align-items: start;
+  }
+
+  .lightbox .screen-canvas.has-image {
+    width: 100%;
+  }
+
+  .lightbox .screen-canvas.has-image img {
+    width: 100%;
+    max-height: none;
   }
 }
 

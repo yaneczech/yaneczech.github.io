@@ -1,0 +1,61 @@
+{
+  "slug": "vijual",
+  "title": "Vijual",
+  "orderLabel": "01",
+  "annotation": "Aplikace pro práci s vizuálními podklady a jejich přehlednou prezentaci.",
+  "links": [],
+  "screens": [
+    {
+      "title": "Screen 1",
+      "image": "",
+      "alt": "Screenshot aplikace Vijual",
+      "caption": "Nahraj screenshot do assets/screenshots/vijual/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+        {
+          "x": 22,
+          "y": 24,
+          "title": "Informační hierarchie",
+          "text": "Místo dekorace je důležitá čitelnost priorit: co je hlavní obsah, co je akce a co je jen doplňující stav."
+        },
+        {
+          "x": 67,
+          "y": 42,
+          "title": "Komponentové myšlení",
+          "text": "Prvky jsou navržené tak, aby šly udržovat jako malé opakovatelné části, ne jako jednorázový vizuální návrh."
+        },
+        {
+          "x": 48,
+          "y": 72,
+          "title": "Frontend detail",
+          "text": "Rozestupy, stavy, responzivní chování a focus nejsou dodatečná vrstva, ale součást návrhu."
+        }
+      ]
+    },
+    {
+      "title": "Screen 2",
+      "image": "",
+      "alt": "Screenshot aplikace Vijual",
+      "caption": "Nahraj screenshot do assets/screenshots/vijual/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+        {
+          "x": 22,
+          "y": 24,
+          "title": "Informační hierarchie",
+          "text": "Místo dekorace je důležitá čitelnost priorit: co je hlavní obsah, co je akce a co je jen doplňující stav."
+        },
+        {
+          "x": 67,
+          "y": 42,
+          "title": "Komponentové myšlení",
+          "text": "Prvky jsou navržené tak, aby šly udržovat jako malé opakovatelné části, ne jako jednorázový vizuální návrh."
+        },
+        {
+          "x": 48,
+          "y": 72,
+          "title": "Frontend detail",
+          "text": "Rozestupy, stavy, responzivní chování a focus nejsou dodatečná vrstva, ale součást návrhu."
+        }
+      ]
+    }
+  ]
+}

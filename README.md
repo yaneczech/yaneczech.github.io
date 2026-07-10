@@ -12,7 +12,26 @@ Potom otevři `http://localhost:8080`.
 
 ## Jak doplnit projekty
 
-Hlavní obsah je v souboru `projects.js`.
+Hlavní obsah je ve složce:
+
+```text
+data/projects/
+```
+
+Každý projekt má vlastní JSON soubor, například:
+
+```text
+data/projects/vijual.json
+```
+
+Pořadí a seznam načítaných projektů určuje manifest:
+
+```text
+data/projects/index.json
+```
+
+Když přidáš nový projekt, vytvoř nový JSON soubor a přidej jeho název do pole
+`projects` v `data/projects/index.json`.
 
 U každého projektu můžeš upravit:
 
@@ -38,10 +57,10 @@ Například:
 assets/screenshots/vijual/main.jpg
 ```
 
-Pak v `projects.js` doplň:
+Pak v JSON souboru projektu doplň:
 
-```js
-image: "assets/screenshots/vijual/main.jpg"
+```json
+"image": "assets/screenshots/vijual/main.jpg"
 ```
 
 ## Hotspoty
@@ -67,9 +86,9 @@ Pro rychlé určení pozic otevři:
 http://localhost:8080/annotations.html
 ```
 
-Stránka načte projekty z `projects.js`, dovolí nahrát lokální screenshot pro
+Stránka načte projekty z `data/projects/`, dovolí nahrát lokální screenshot pro
 náhled a po kliknutí/tažení bodů vygeneruje blok `hotspots`, který můžeš vložit
-zpět k danému screenshotu.
+zpět k danému screenshotu v JSON souboru projektu.
 
 ## Publikace na GitHub Pages
 

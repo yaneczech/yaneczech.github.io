@@ -1,4 +1,4 @@
-const mapperProjects = window.portfolioProjects || [];
+let mapperProjects = [];
 
 const projectSelect = document.querySelector("#mapper-project");
 const screenSelect = document.querySelector("#mapper-screen");
@@ -217,7 +217,7 @@ function renderOutput() {
     text: hotspot.text
   }));
 
-  output.value = `hotspots: ${JSON.stringify(normalized, null, 2)}`;
+  output.value = `"hotspots": ${JSON.stringify(normalized, null, 2)}`;
 }
 
 function getPointerPosition(event) {
@@ -383,10 +383,24 @@ async function copyOutput() {
   document.execCommand("copy");
 }
 
-function init() {
+async function loadProjects() {
+  if (window.portfolioProjectsReady) {
+    return window.portfolioProjectsReady;
+  }
+
+  if (window.loadPortfolioProjects) {
+    return window.loadPortfolioProjects();
+  }
+
+  return window.portfolioProjects || [];
+}
+
+async function init() {
+  mapperProjects = await loadProjects();
+
   if (!mapperProjects.length) {
     screenTitle.textContent = "Chybí projekty";
-    screenCaption.textContent = "Nepodařilo se načíst window.portfolioProjects z projects.js.";
+    screenCaption.textContent = "Nepodařilo se načíst projekty ze složky data/projects.";
     return;
   }
 
@@ -398,4 +412,8 @@ function init() {
 
 window.addEventListener("beforeunload", clearPreviewUrl);
 
-init();
+init().catch((error) => {
+  console.error(error);
+  screenTitle.textContent = "Chyba načtení";
+  screenCaption.textContent = "Nepodařilo se načíst data projektů. Zkontroluj data/projects/index.json.";
+});

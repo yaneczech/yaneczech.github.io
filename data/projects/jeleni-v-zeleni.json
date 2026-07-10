@@ -1,0 +1,46 @@
+{
+  "slug": "jeleni-v-zeleni",
+  "title": "Jeleni v zeleni",
+  "orderLabel": "05",
+  "type": "webová implementace",
+  "role": "UX/UI design, vizuální návrh, frontend implementace",
+  "annotation": "Autorsky kontrolovaná webová realizace s důrazem na vizuální charakter a přesnou implementaci.",
+  "intro": "Implementace, které máš nejvíc pod kontrolou. V portfoliu mohou fungovat jako čistá ukázka autorského designu, frontend řemesla a dokončeného vizuálního detailu.",
+  "context": "Projekt je vhodný pro ukázku toho, jak se vizuální záměr drží až do produkčního výsledku bez výrazného rozmělnění uživatelskými zásahy.",
+  "decisions": [
+    "Vizuální styl je vedený konzistentně od návrhu po implementaci.",
+    "Obsah, typografie a layout mají držet charakter projektu, ne jen obecnou webovou šablonu.",
+    "Dobrá ukázka detailu v HTML/CSS: rytmus, responzivita, mikrointerakce a obrazový materiál."
+  ],
+  "implementation": "U tohoto projektu má smysl ukázat více screenshotů: úvodní plochu, detail obsahu, mobilní variantu a případně konkrétní CSS/interaction rozhodnutí.",
+  "status": "Autorsky nejlépe kontrolovaná realizace.",
+  "links": [],
+  "screens": [
+    {
+      "title": "Webová realizace",
+      "image": "",
+      "alt": "Screenshot projektu Jeleni v zeleni",
+      "caption": "Nahraj screenshot do assets/screenshots/jeleni-v-zeleni/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+        {
+          "x": 30,
+          "y": 28,
+          "title": "Vizuální charakter",
+          "text": "Projekt může ukázat práci s atmosférou bez ztráty čistoty a použitelnosti."
+        },
+        {
+          "x": 58,
+          "y": 48,
+          "title": "Implementační přesnost",
+          "text": "Tady má smysl ukázat, že výsledný web drží návrh: typografie, spacing, breakpointy, detaily."
+        },
+        {
+          "x": 74,
+          "y": 72,
+          "title": "Kontrola výsledku",
+          "text": "Protože je projekt víc pod tvou kontrolou, může sloužit jako silná závěrečná case study."
+        }
+      ]
+    }
+  ]
+}

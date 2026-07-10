@@ -1,0 +1,46 @@
+{
+  "slug": "rozvrhel",
+  "title": "Rozvrhel",
+  "orderLabel": "03",
+  "type": "aplikace / plánování",
+  "role": "UX/UI design, informační architektura, frontend implementace",
+  "annotation": "Nástroj pro rychlou orientaci v rozvrhu, plánování a stavových informacích.",
+  "intro": "Aplikace pro přehled nad rozvrhem a plánováním. Silná ukázka práce s komplexnější strukturou, kde je potřeba udržet rychlou orientaci a praktickou použitelnost.",
+  "context": "U plánovacích nástrojů často rozhoduje méně grafický efekt a více přesná hierarchie, čitelnost stavů a stabilní chování rozhraní.",
+  "decisions": [
+    "Rozvrhové informace jsou vedené jako primární obsah, ne jako dekorativní tabulka.",
+    "Důležité stavy a konflikty musí být poznatelné bez dlouhého vysvětlování.",
+    "Interakce mají podporovat rychlou kontrolu, ne zbytečné přepínání kontextu."
+  ],
+  "implementation": "Projekt je vhodný pro ukázku layoutu, responzivních pravidel, detailu tabulek/slotů a přístupnosti ovládacích prvků.",
+  "status": "Ukázky doporučuji popsat přes autorský návrh a implementační řešení.",
+  "links": [],
+  "screens": [
+    {
+      "title": "Rozvrhová plocha",
+      "image": "",
+      "alt": "Screenshot aplikace Rozvrhel",
+      "caption": "Nahraj screenshot do assets/screenshots/rozvrhel/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+        {
+          "x": 18,
+          "y": 38,
+          "title": "Rychlé skenování",
+          "text": "Rozhraní musí jít číst po řádcích i po blocích; uživatel nesmí ztratit orientaci v mřížce."
+        },
+        {
+          "x": 62,
+          "y": 28,
+          "title": "Stavové informace",
+          "text": "Konflikty, volné sloty nebo upozornění mají mít jasnou vizuální prioritu."
+        },
+        {
+          "x": 78,
+          "y": 72,
+          "title": "Responzivní pravidla",
+          "text": "U plánovacích rozhraní nestačí prosté zmenšení. Je potřeba rozhodnout, co se skládá, co zůstává a co se mění v detail."
+        }
+      ]
+    }
+  ]
+}

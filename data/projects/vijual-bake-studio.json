@@ -1,0 +1,46 @@
+{
+  "slug": "vijual-bake-studio",
+  "title": "Vijual Bake Studio",
+  "orderLabel": "02",
+  "type": "navazující produkt",
+  "role": "produktový design, UI systém, frontend implementace",
+  "annotation": "Navazující workflow k Vijualu pro přípravu a kontrolu výstupů v dalším kroku procesu.",
+  "intro": "Navazující část ekosystému Vijual. V portfoliu má smysl ji ukázat hned po hlavní aplikaci, protože vysvětluje rozšíření stejného principu do dalšího pracovního toku.",
+  "context": "Projekt řeší, jak zachovat konzistentní jazyk rozhraní a současně podpořit specifický proces, který má jiné tempo i jiné priority než hlavní aplikace.",
+  "decisions": [
+    "Návaznost na Vijual bez slepého kopírování stejné obrazovky.",
+    "Vizuální systém drží kontinuitu, ale pracovní akce mají vlastní prioritu.",
+    "Rozhraní počítá s tím, že uživatel potřebuje rychle ověřovat stav a výsledek."
+  ],
+  "implementation": "Frontend část je vhodné prezentovat přes detailní stavy, responzivní chování a práci s komponentami, které se dají vysvětlit přímo nad screenshotem.",
+  "status": "Autorský stav / vlastní produktový směr.",
+  "links": [],
+  "screens": [
+    {
+      "title": "Navazující workflow",
+      "image": "",
+      "alt": "Screenshot aplikace Vijual Bake Studio",
+      "caption": "Nahraj screenshot do assets/screenshots/vijual-bake-studio/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+        {
+          "x": 28,
+          "y": 30,
+          "title": "Kontinuita systému",
+          "text": "Rozhraní navazuje na Vijual, ale nepředstírá, že jde o stejný typ práce."
+        },
+        {
+          "x": 72,
+          "y": 36,
+          "title": "Priorita akcí",
+          "text": "Důležité akce mají jasnou pozici a viditelnost bez nutnosti přidávat další vizuální vrstvy."
+        },
+        {
+          "x": 54,
+          "y": 68,
+          "title": "Stavy a zpětná vazba",
+          "text": "Stav procesu je součást návrhu, ne až textová hláška přidaná na konci implementace."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "slug": "zdar-manual",
+  "title": "Manuál pro digitální implementaci města Žďár nad Sázavou",
+  "orderLabel": "04",
+  "type": "digitální manuál / veřejná správa",
+  "role": "UX/UI design, návrh systému, frontend implementace",
+  "annotation": "Digitální manuál, který převádí pravidla městské identity do prakticky použitelných rozhraní.",
+  "intro": "Manuál pro digitální implementaci městské identity. V portfoliu může dobře ukázat schopnost převést pravidla značky do prakticky použitelného digitálního systému.",
+  "context": "U veřejné správy je důležitá srozumitelnost, přístupnost a možnost dlouhodobé správy. Výsledek musí být použitelný i mimo původní autorský dohled.",
+  "decisions": [
+    "Pravidla nejsou jen statický brandbook, ale praktický návod pro digitální prostředí.",
+    "Komponenty a příklady mají pomáhat implementaci, ne jen popisovat vizuální styl.",
+    "Text, navigace a struktura jsou navržené tak, aby byly použitelné pro různé role."
+  ],
+  "implementation": "Projekt je vhodné ukázat přes kombinaci screenshotů a poznámek k tomu, jak se z pravidel stává konkrétní HTML/CSS implementace.",
+  "status": "Pokud se živý projekt později měnil, portfolio může ukazovat stav při předání a jasně ho tak označit.",
+  "links": [],
+  "screens": [
+    {
+      "title": "Struktura digitálního manuálu",
+      "image": "",
+      "alt": "Screenshot manuálu pro digitální implementaci města Žďár nad Sázavou",
+      "caption": "Nahraj screenshot do assets/screenshots/zdar-manual/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+        {
+          "x": 24,
+          "y": 22,
+          "title": "Navigace manuálu",
+          "text": "Manuál má být nástroj pro práci, proto musí mít rychlou orientaci v pravidlech i příkladech."
+        },
+        {
+          "x": 66,
+          "y": 46,
+          "title": "Překlad identity do UI",
+          "text": "Důležité je ukázat, jak se vizuální identita chová v reálných digitálních komponentech."
+        },
+        {
+          "x": 44,
+          "y": 76,
+          "title": "Dlouhodobá použitelnost",
+          "text": "Systém počítá s tím, že ho budou používat další lidé a obsah se může postupně měnit."
+        }
+      ]
+    }
+  ]
+}
