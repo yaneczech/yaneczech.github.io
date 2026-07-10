@@ -22,7 +22,7 @@
 
 @font-face {
   font-family: "Identist Sans";
-  src: url("assets/webfont/IdentistSans-VariableVF.ttf") format("truetype");
+  src: url("assets/webfont/IdentistSans-VariableVF.ttf?v=20260710-fontfix2") format("truetype");
   font-weight: 200 700;
   font-style: normal;
   font-display: swap;
@@ -99,8 +99,8 @@ button {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 22px var(--gutter);
-  border-bottom: 1px solid var(--line);
-  background: var(--background);
+  background-color: var(--text);
+  color: var(--background);
 }
 
 .brand {

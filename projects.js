@@ -1,7 +1,7 @@
 const PROJECT_MANIFEST_URL = "data/projects/index.json";
 
 async function fetchJson(url) {
-  const response = await fetch(url, { cache: "no-cache" });
+  const response = await fetch(String(url), { cache: "no-cache" });
 
   if (!response.ok) {
     throw new Error(`Nepodařilo se načíst ${url} (${response.status})`);
@@ -18,9 +18,8 @@ async function loadPortfolioProjects() {
   const manifest = await fetchJson(PROJECT_MANIFEST_URL);
   const files = manifest.projects || [];
 
-  const projects = await Promise.all(
-    files.map((file) => fetchJson(new URL(file, new URL(PROJECT_MANIFEST_URL, window.location.href))))
-  );
+  const manifestUrl = new URL(PROJECT_MANIFEST_URL, window.location.href);
+  const projects = await Promise.all(files.map((file) => fetchJson(new URL(file, manifestUrl).href)));
 
   window.portfolioProjects = projects;
   return projects;
