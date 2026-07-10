@@ -31,7 +31,7 @@
   max-width: 12ch;
   margin: 0;
   font-size: clamp(42px, 6vw, 86px);
-  font-weight: 100;
+  font-weight: 200;
   letter-spacing: normal;
   line-height: 0.98;
 }
@@ -150,7 +150,7 @@
 .mapper-workspace-head h2 {
   margin: 0;
   font-size: clamp(24px, 3vw, 42px);
-  font-weight: 180;
+  font-weight: 200;
   letter-spacing: normal;
   line-height: 1.04;
 }
@@ -234,7 +234,7 @@
   background: var(--accent);
   color: #ffffff;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1;
   cursor: grab;
 }

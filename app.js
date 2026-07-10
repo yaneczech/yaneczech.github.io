@@ -60,8 +60,8 @@ function renderProjectDetail() {
     </header>
 
     <section class="screen-section" aria-label="Anotovaný screenshot">
-      ${renderScreenToolbar(project, screen)}
       ${renderScreenFrame(screen, "inline")}
+      ${renderScreenToolbar(project, screen)}
     </section>
 
     <nav class="case-nav" aria-label="Přepínání projektů">
@@ -93,7 +93,7 @@ function renderScreenToolbar(project, screen) {
       <div class="screen-actions">
         ${screens.length > 1 ? renderScreenNav(screens) : ""}
         <button class="screen-open" type="button" data-open-lightbox>
-          Zvětšit
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><!-- Icon from SmartIcons Glyph by SmartIcons - https://creativecommons.org/licenses/by-sa/4.0/ --><path fill="currentColor" fill-rule="evenodd" d="M6.995 10.852L5.133 9.008l-3.026 2.98L.062 9.972v5.903h5.987l-2.076-2.047zM9.961.008l2.097 2.087l-3.053 3.033l1.88 1.88l3.057-3.038l1.967 1.996V.008z"/></svg>
         </button>
         ${renderAnnotationToggle()}
       </div>
