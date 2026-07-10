@@ -2,7 +2,7 @@
   --background: #faf6ee;
   --panel: #ffffff;
   --text: #111111;
-  --muted: #6e675d;
+  --muted: #afa495;
   --quiet: #9e968b;
   --line: #e5ddd0;
   --line-strong: #111111;
@@ -128,7 +128,7 @@ button {
 }
 
 .top-links a:hover {
-  color: var(--text);
+  color: var(--background);
 }
 
 .page-shell {
@@ -284,9 +284,15 @@ button {
   font-weight: 300;
 }
 
+.screen-stack {
+  display: grid;
+  gap: clamp(30px, 5vw, 64px);
+  margin-top: 20px;
+}
+
 .screen-section {
   position: relative;
-  margin-top: 20px;
+  margin-top: 0;
   min-width: 0;
   overflow: visible;
 }
@@ -309,8 +315,14 @@ button {
 
 .screen-actions {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   align-items: center;
   gap: 10px;
+}
+
+.screen-actions>* {
+  display: inline-block;
 }
 
 select,
@@ -318,22 +330,30 @@ select,
 .screen-open,
 .lightbox-close {
   min-height: 32px;
-  border: 1px solid var(--line-strong);
-  background: transparent;
+  background: var(--surface);
   color: var(--text);
   padding: 6px 10px;
   font-size: 12px;
   cursor: pointer;
+  border: none;
 }
 
 select,
-.annotation-toggle {
+.annotation-toggle, 
+.screen-open,
+.lightbox-close  {
   border-radius: 999px;
 }
-
 .screen-open,
-.lightbox-close {
-  border-radius: 0;
+.lightbox-close  {
+  display: inline-grid;
+  place-items: center;
+  line-height: 1;
+}
+
+.screen-open {
+  width: 32px;
+  padding-inline: 8px;
 }
 
 .screen-open:hover,
@@ -438,6 +458,7 @@ select,
 .screen-frame {
   position: relative;
   margin: 0;
+  max-width: 100%;
   overflow: visible;
 }
 
@@ -446,9 +467,9 @@ select,
   min-height: 0;
   overflow: visible;
   border: 1px solid var(--line-strong);
-  border-top: 0;
   background: var(--surface);
   aspect-ratio: 16 / 10;
+  max-width: 100%;
 }
 
 .screen-canvas.has-image {
@@ -740,16 +761,18 @@ select,
 
   .screen-toolbar,
   .screen-actions {
-    align-items: stretch;
+    align-items: center;
   }
 
   .screen-toolbar {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .screen-actions {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
   }
 
   .screen-switcher {

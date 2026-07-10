@@ -5,8 +5,8 @@ const projectDetail = document.querySelector("#project-detail");
 
 let activeSlug = normalizeSlug(window.location.hash.replace("#", ""));
 let activeScreenIndex = 0;
-let annotationsVisible = true;
 let lightboxOpen = false;
+const annotationVisibility = new Map();
 
 function normalizeSlug(value) {
   return value ? value.replace(/^projekt-/, "").trim() : "";
@@ -48,7 +48,8 @@ function renderProjectDetail() {
   const project = getActiveProject();
   if (!project) return;
 
-  const screen = project.screens?.[activeScreenIndex] || project.screens?.[0];
+  const screens = project.screens?.length ? project.screens : [null];
+  const screen = screens[activeScreenIndex] || screens[0];
   const currentIndex = projects.findIndex((item) => item.slug === project.slug);
   const previous = projects[(currentIndex - 1 + projects.length) % projects.length];
   const next = projects[(currentIndex + 1) % projects.length];
@@ -59,10 +60,18 @@ function renderProjectDetail() {
       ${project.annotation ? `<p class="case-annotation">${escapeHtml(project.annotation)}</p>` : ""}
     </header>
 
-    <section class="screen-section" aria-label="Anotovaný screenshot">
-      ${renderScreenFrame(screen, "inline")}
-      ${renderScreenToolbar(project, screen)}
-    </section>
+    <div class="screen-stack" aria-label="Anotované screenshoty">
+      ${screens
+        .map(
+          (item, index) => `
+            <section class="screen-section" aria-label="${escapeHtml(item?.title || `Screenshot ${index + 1}`)}">
+              ${renderScreenFrame(item, `inline-${index}`, index)}
+              ${renderScreenToolbar(item, index)}
+            </section>
+          `
+        )
+        .join("")}
+    </div>
 
     <nav class="case-nav" aria-label="Přepínání projektů">
       <a href="#${previous.slug}" data-project-target="${previous.slug}">
@@ -81,9 +90,7 @@ function renderProjectDetail() {
   bindDetailInteractions();
 }
 
-function renderScreenToolbar(project, screen) {
-  const screens = project.screens || [];
-
+function renderScreenToolbar(screen, index) {
   return `
     <div class="screen-toolbar">
       <div>
@@ -91,62 +98,54 @@ function renderScreenToolbar(project, screen) {
       </div>
 
       <div class="screen-actions">
-        ${screens.length > 1 ? renderScreenNav(screens) : ""}
-        <button class="screen-open" type="button" data-open-lightbox>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><!-- Icon from SmartIcons Glyph by SmartIcons - https://creativecommons.org/licenses/by-sa/4.0/ --><path fill="currentColor" fill-rule="evenodd" d="M6.995 10.852L5.133 9.008l-3.026 2.98L.062 9.972v5.903h5.987l-2.076-2.047zM9.961.008l2.097 2.087l-3.053 3.033l1.88 1.88l3.057-3.038l1.967 1.996V.008z"/></svg>
+        ${renderAnnotationToggle(index)}
+        <button class="screen-open" type="button" data-open-lightbox="${index}" title="Zvětšit">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M6.995 10.852L5.133 9.008l-3.026 2.98L.062 9.972v5.903h5.987l-2.076-2.047zM9.961.008l2.097 2.087l-3.053 3.033l1.88 1.88l3.057-3.038l1.967 1.996V.008z"/></svg>
         </button>
-        ${renderAnnotationToggle()}
       </div>
     </div>
   `;
 }
 
-function renderScreenNav(screens) {
-  return `
-    <div class="screen-switcher" role="tablist" aria-label="Screenshoty projektu">
-      ${screens
-        .map(
-          (item, index) => `
-            <button
-              class="screen-tab ${index === activeScreenIndex ? "is-active" : ""}"
-              type="button"
-              role="tab"
-              aria-selected="${index === activeScreenIndex ? "true" : "false"}"
-              data-screen-index="${index}"
-            >
-              <span>${String(index + 1).padStart(2, "0")}</span>
-              ${escapeHtml(item.title || `Ukázka ${index + 1}`)}
-            </button>
-          `
-        )
-        .join("")}
-    </div>
-  `;
+function getScreenKey(index = activeScreenIndex) {
+  return `${activeSlug}:${index}`;
 }
 
-function renderAnnotationToggle() {
+function areAnnotationsVisible(index = activeScreenIndex) {
+  const key = getScreenKey(index);
+  return annotationVisibility.has(key) ? annotationVisibility.get(key) : true;
+}
+
+function toggleScreenAnnotations(index = activeScreenIndex) {
+  annotationVisibility.set(getScreenKey(index), !areAnnotationsVisible(index));
+}
+
+function renderAnnotationToggle(index = activeScreenIndex) {
+  const isVisible = areAnnotationsVisible(index);
+
   return `
     <button
-      class="annotation-toggle ${annotationsVisible ? "is-on" : ""}"
+      class="annotation-toggle ${isVisible ? "is-on" : ""}"
       type="button"
       data-toggle-annotations
-      aria-pressed="${annotationsVisible ? "true" : "false"}"
+      data-screen-index="${index}"
+      aria-pressed="${isVisible ? "true" : "false"}"
     >
       <span class="annotation-toggle__label">Anotace</span>
       <span class="annotation-toggle__track" aria-hidden="true">
         <span class="annotation-toggle__thumb"></span>
       </span>
-      <span class="annotation-toggle__state">${annotationsVisible ? "zapnuto" : "vypnuto"}</span>
+      <span class="annotation-toggle__state">${isVisible ? "zapnuto" : "vypnuto"}</span>
     </button>
   `;
 }
 
-function renderScreenFrame(screen, idPrefix = "inline") {
+function renderScreenFrame(screen, idPrefix = "inline", index = activeScreenIndex) {
   const hasImage = Boolean(screen?.image);
   const hotspots = screen?.hotspots || [];
 
   return `
-    <figure class="screen-frame ${annotationsVisible ? "" : "hide-annotations"}">
+    <figure class="screen-frame ${areAnnotationsVisible(index) ? "" : "hide-annotations"}">
       <div class="screen-canvas ${hasImage ? "has-image" : ""}">
         ${
           hasImage
@@ -207,15 +206,15 @@ function renderLightbox(project, screen) {
           </div>
 
           <div class="screen-actions">
-            ${renderAnnotationToggle()}
-            <button class="lightbox-close" type="button" data-close-lightbox>
-              Zavřít
+            ${renderAnnotationToggle(activeScreenIndex)}
+            <button class="lightbox-close" type="button" data-close-lightbox title="Zavřít">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><!-- Icon from SmartIcons Glyph by SmartIcons - https://creativecommons.org/licenses/by-sa/4.0/ --><path fill="currentColor" fill-rule="evenodd" d="M15.995 1.852L14.133.008l-3.026 2.98L9.062.972v5.903h5.987l-2.076-2.047zM.961 9.008l2.097 2.087l-3.053 3.033l1.88 1.88l3.057-3.038l1.967 1.996V9.008z"/></svg>
             </button>
           </div>
         </header>
 
         <div class="lightbox-figure">
-          ${renderScreenFrame(screen, "lightbox")}
+          ${renderScreenFrame(screen, "lightbox", activeScreenIndex)}
         </div>
       </div>
     </div>
@@ -238,22 +237,15 @@ function renderPlaceholderScreen() {
 }
 
 function bindDetailInteractions() {
-  document.querySelectorAll("[data-screen-index]").forEach((button) => {
-    button.addEventListener("click", (event) => {
-      activeScreenIndex = Number(event.currentTarget.dataset.screenIndex) || 0;
-      renderProjectDetail();
-    });
-  });
-
   document.querySelectorAll("[data-toggle-annotations]").forEach((toggleButton) => {
-    toggleButton.addEventListener("click", () => {
-      annotationsVisible = !annotationsVisible;
+    toggleButton.addEventListener("click", (event) => {
+      toggleScreenAnnotations(Number(event.currentTarget.dataset.screenIndex) || 0);
       renderProjectDetail();
     });
   });
 
   document.querySelectorAll("[data-open-lightbox]").forEach((button) => {
-    button.addEventListener("click", () => openLightbox());
+    button.addEventListener("click", (event) => openLightbox(Number(event.currentTarget.dataset.openLightbox) || 0));
   });
 
   document.querySelectorAll("[data-close-lightbox]").forEach((button) => {
@@ -277,7 +269,10 @@ function bindDetailInteractions() {
   });
 }
 
-function openLightbox() {
+function openLightbox(index = 0) {
+  const project = getActiveProject();
+  const screens = project?.screens || [];
+  activeScreenIndex = screens[index] ? index : 0;
   lightboxOpen = true;
   document.body.classList.add("is-lightbox-open");
   renderProjectDetail();
@@ -288,7 +283,7 @@ function closeLightbox() {
   lightboxOpen = false;
   document.body.classList.remove("is-lightbox-open");
   renderProjectDetail();
-  document.querySelector("[data-open-lightbox]")?.focus();
+  document.querySelector(`[data-open-lightbox="${activeScreenIndex}"]`)?.focus();
 }
 
 function closeHotspots() {
