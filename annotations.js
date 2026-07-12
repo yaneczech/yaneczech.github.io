@@ -1,7 +1,10 @@
 let mapperProjects = [];
 
 const projectSelect = document.querySelector("#mapper-project");
+const projectAnnotationInput = document.querySelector("#mapper-project-annotation");
 const screenSelect = document.querySelector("#mapper-screen");
+const screenTitleInput = document.querySelector("#mapper-screen-title-input");
+const screenCaptionInput = document.querySelector("#mapper-screen-caption-input");
 const uploadInput = document.querySelector("#mapper-upload");
 const stage = document.querySelector("#mapper-stage");
 const image = document.querySelector("#mapper-image");
@@ -13,6 +16,8 @@ const positionText = document.querySelector("#mapper-position");
 const list = document.querySelector("#mapper-list");
 const count = document.querySelector("#mapper-count");
 const output = document.querySelector("#mapper-output");
+const saveButton = document.querySelector("[data-save]");
+const saveStatus = document.querySelector("#mapper-save-status");
 
 const state = {
   projectIndex: 0,
@@ -21,7 +26,8 @@ const state = {
   previewUrl: "",
   activeIndex: null,
   draggingIndex: null,
-  suppressNextClick: false
+  suppressNextClick: false,
+  canSave: false
 };
 
 function escapeHtml(value = "") {
@@ -55,6 +61,15 @@ function getProject() {
 function getScreen() {
   const project = getProject();
   return project?.screens?.[state.screenIndex] || project?.screens?.[0];
+}
+
+function getNormalizedHotspots() {
+  return state.hotspots.map((hotspot) => ({
+    x: normalizeCoordinate(hotspot.x),
+    y: normalizeCoordinate(hotspot.y),
+    title: hotspot.title,
+    text: hotspot.text
+  }));
 }
 
 function populateProjects() {
@@ -93,7 +108,17 @@ function loadSelectedScreen() {
   state.activeIndex = state.hotspots.length ? 0 : null;
   clearPreviewUrl();
   uploadInput.value = "";
+  renderEditorFields();
   render();
+}
+
+function renderEditorFields() {
+  const project = getProject();
+  const screen = getScreen();
+
+  projectAnnotationInput.value = project?.annotation || "";
+  screenTitleInput.value = screen?.title || "";
+  screenCaptionInput.value = screen?.caption || "";
 }
 
 function clearPreviewUrl() {
@@ -117,8 +142,9 @@ function render() {
 function renderScreenMeta() {
   const screen = getScreen();
 
-  screenTitle.textContent = screen?.title || "Screenshot";
-  screenCaption.textContent = screen?.caption || "Klikni do náhledu a získej procentuální souřadnice.";
+  screenTitle.textContent = screenTitleInput.value || screen?.title || "Screenshot";
+  screenCaption.textContent =
+    screenCaptionInput.value || screen?.caption || "Klikni do náhledu a získej procentuální souřadnice.";
 }
 
 function renderStage() {
@@ -210,14 +236,7 @@ function getPointLabel(total) {
 }
 
 function renderOutput() {
-  const normalized = state.hotspots.map((hotspot) => ({
-    x: normalizeCoordinate(hotspot.x),
-    y: normalizeCoordinate(hotspot.y),
-    title: hotspot.title,
-    text: hotspot.text
-  }));
-
-  output.value = `"hotspots": ${JSON.stringify(normalized, null, 2)}`;
+  output.value = `"hotspots": ${JSON.stringify(getNormalizedHotspots(), null, 2)}`;
 }
 
 function getPointerPosition(event) {
@@ -273,6 +292,25 @@ function bindEvents() {
   screenSelect.addEventListener("change", (event) => {
     state.screenIndex = Number(event.target.value) || 0;
     loadSelectedScreen();
+  });
+
+  projectAnnotationInput.addEventListener("input", () => {
+    const project = getProject();
+    if (project) project.annotation = projectAnnotationInput.value;
+  });
+
+  screenTitleInput.addEventListener("input", () => {
+    const screen = getScreen();
+    if (screen) screen.title = screenTitleInput.value;
+    populateScreens();
+    screenSelect.value = String(state.screenIndex);
+    renderScreenMeta();
+  });
+
+  screenCaptionInput.addEventListener("input", () => {
+    const screen = getScreen();
+    if (screen) screen.caption = screenCaptionInput.value;
+    renderScreenMeta();
   });
 
   uploadInput.addEventListener("change", (event) => {
@@ -369,6 +407,8 @@ function bindEvents() {
       button.textContent = "Kopírovat";
     }, 1400);
   });
+
+  saveButton.addEventListener("click", saveCurrentHotspots);
 }
 
 async function copyOutput() {
@@ -395,6 +435,75 @@ async function loadProjects() {
   return window.portfolioProjects || [];
 }
 
+function setSaveStatus(message, type = "") {
+  saveStatus.textContent = message;
+  saveStatus.classList.toggle("is-ok", type === "ok");
+  saveStatus.classList.toggle("is-error", type === "error");
+}
+
+async function detectSaveSupport() {
+  try {
+    const response = await fetch("/__save-annotations/status", { cache: "no-cache" });
+    const payload = await response.json();
+    state.canSave = Boolean(response.ok && payload.writable);
+  } catch {
+    state.canSave = false;
+  }
+
+  saveButton.disabled = !state.canSave;
+  setSaveStatus(
+    state.canSave
+      ? "Přímé ukládání je aktivní. Tlačítko uloží hotspoty do JSON souboru vybraného projektu."
+      : "Přímé ukládání není aktivní. Spusť lokálně: node tools/annotation-server.mjs",
+    state.canSave ? "ok" : ""
+  );
+}
+
+async function saveCurrentHotspots() {
+  if (!state.canSave) return;
+
+  const project = getProject();
+  if (!project) return;
+
+  saveButton.disabled = true;
+  setSaveStatus("Ukládám…");
+
+  try {
+    const response = await fetch("/__save-annotations", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({
+        slug: project.slug,
+        screenIndex: state.screenIndex,
+        projectAnnotation: projectAnnotationInput.value,
+        screenTitle: screenTitleInput.value,
+        screenCaption: screenCaptionInput.value,
+        hotspots: getNormalizedHotspots()
+      })
+    });
+    const payload = await response.json();
+
+    if (!response.ok || !payload.ok) {
+      throw new Error(payload.error || "Uložení selhalo.");
+    }
+
+    project.annotation = projectAnnotationInput.value;
+    project.screens[state.screenIndex].title = screenTitleInput.value;
+    project.screens[state.screenIndex].caption = screenCaptionInput.value;
+    project.screens[state.screenIndex].hotspots = cloneHotspots(getNormalizedHotspots());
+    populateScreens();
+    screenSelect.value = String(state.screenIndex);
+    setSaveStatus(`Uloženo do ${payload.file} (${payload.count} bodů).`, "ok");
+  } catch (error) {
+    console.error(error);
+    setSaveStatus(error.message || "Uložení selhalo.", "error");
+  } finally {
+    saveButton.disabled = !state.canSave;
+  }
+}
+
 async function init() {
   mapperProjects = await loadProjects();
 
@@ -408,6 +517,7 @@ async function init() {
   populateScreens();
   loadSelectedScreen();
   bindEvents();
+  await detectSaveSupport();
 }
 
 window.addEventListener("beforeunload", clearPreviewUrl);

@@ -6,6 +6,7 @@ const projectDetail = document.querySelector("#project-detail");
 let activeSlug = normalizeSlug(window.location.hash.replace("#", ""));
 let activeScreenIndex = 0;
 let lightboxOpen = false;
+let lightboxZoom = false;
 const annotationVisibility = new Map();
 
 function normalizeSlug(value) {
@@ -207,17 +208,35 @@ function renderLightbox(project, screen) {
 
           <div class="screen-actions">
             ${renderAnnotationToggle(activeScreenIndex)}
+            ${renderZoomToggle(Boolean(screen?.image))}
             <button class="lightbox-close" type="button" data-close-lightbox title="Zavřít">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><!-- Icon from SmartIcons Glyph by SmartIcons - https://creativecommons.org/licenses/by-sa/4.0/ --><path fill="currentColor" fill-rule="evenodd" d="M15.995 1.852L14.133.008l-3.026 2.98L9.062.972v5.903h5.987l-2.076-2.047zM.961 9.008l2.097 2.087l-3.053 3.033l1.88 1.88l3.057-3.038l1.967 1.996V9.008z"/></svg>
             </button>
           </div>
         </header>
 
-        <div class="lightbox-figure">
+        <div class="lightbox-figure" data-lightbox-figure>
           ${renderScreenFrame(screen, "lightbox", activeScreenIndex)}
         </div>
       </div>
     </div>
+  `;
+}
+
+function renderZoomToggle(hasImage) {
+  return `
+    <button
+      class="zoom-toggle ${lightboxZoom ? "is-on" : ""}"
+      type="button"
+      data-toggle-zoom
+      aria-pressed="${lightboxZoom ? "true" : "false"}"
+      title="${lightboxZoom ? "Vypnout lupu" : "Zapnout lupu"}"
+      aria-label="${lightboxZoom ? "Vypnout lupu" : "Zapnout lupu"}"
+      ${hasImage ? "" : "disabled"}
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" aria-hidden="true"><g fill="currentColor" fill-rule="evenodd"><path d="M16.025 7.5c0-4.143-3.356-7.5-7.499-7.5a7.5 7.5 0 0 0-7.499 7.5a7.5 7.5 0 0 0 7.5 7.5c2.219 0 7.5-.052 7.5-.052zm-7.553 5.529a5.506 5.506 0 1 1 .002-11.012a5.506 5.506 0 0 1-.002 11.012m6.487.929h-1v-1h1z"/><path d="M7.844 3.044c-2.119 0-3.839 1.616-3.839 3.608c0 .25.026.496.077.73c.186.84.529.691.529-.158c0-1.998 1.719-3.609 3.84-3.609c.905 0 .608-.571-.607-.571"/></g></svg>
+      <span>${lightboxZoom ? "Vypnout" : "Lupa"}</span>
+    </button>
   `;
 }
 
@@ -252,12 +271,19 @@ function bindDetailInteractions() {
     button.addEventListener("click", () => closeLightbox());
   });
 
+  document.querySelectorAll("[data-toggle-zoom]").forEach((button) => {
+    button.addEventListener("click", () => toggleLightboxZoom());
+  });
+
   const lightbox = document.querySelector("[data-lightbox]");
   if (lightbox) {
+    lightbox.classList.toggle("is-zoomed", lightboxZoom);
     lightbox.addEventListener("click", (event) => {
       if (event.target === lightbox) closeLightbox();
     });
   }
+
+  bindLightboxPan();
 
   document.querySelectorAll(".hotspot").forEach((button) => {
     button.addEventListener("click", () => {
@@ -269,11 +295,73 @@ function bindDetailInteractions() {
   });
 }
 
+function bindLightboxPan() {
+  const figure = document.querySelector("[data-lightbox-figure]");
+  if (!figure || !lightboxZoom) return;
+
+  let isPanning = false;
+  let startX = 0;
+  let startY = 0;
+  let scrollLeft = 0;
+  let scrollTop = 0;
+
+  figure.addEventListener("pointerdown", (event) => {
+    if (event.pointerType !== "mouse" || event.button !== 0) return;
+    if (event.target.closest("button, a")) return;
+
+    isPanning = true;
+    startX = event.clientX;
+    startY = event.clientY;
+    scrollLeft = figure.scrollLeft;
+    scrollTop = figure.scrollTop;
+    figure.classList.add("is-panning");
+    figure.setPointerCapture(event.pointerId);
+  });
+
+  figure.addEventListener("pointermove", (event) => {
+    if (!isPanning) return;
+
+    figure.scrollLeft = scrollLeft - (event.clientX - startX);
+    figure.scrollTop = scrollTop - (event.clientY - startY);
+  });
+
+  function stopPanning(event) {
+    if (!isPanning) return;
+
+    isPanning = false;
+    figure.classList.remove("is-panning");
+    if (event?.pointerId != null && figure.hasPointerCapture(event.pointerId)) {
+      figure.releasePointerCapture(event.pointerId);
+    }
+  }
+
+  figure.addEventListener("pointerup", stopPanning);
+  figure.addEventListener("pointercancel", stopPanning);
+  figure.addEventListener("pointerleave", stopPanning);
+}
+
+function toggleLightboxZoom() {
+  lightboxZoom = !lightboxZoom;
+  renderProjectDetail();
+
+  if (lightboxZoom) {
+    requestAnimationFrame(() => {
+      const figure = document.querySelector("[data-lightbox-figure]");
+      if (!figure) return;
+
+      figure.scrollLeft = Math.max(0, (figure.scrollWidth - figure.clientWidth) / 2);
+      figure.scrollTop = 0;
+      document.querySelector("[data-toggle-zoom]")?.focus();
+    });
+  }
+}
+
 function openLightbox(index = 0) {
   const project = getActiveProject();
   const screens = project?.screens || [];
   activeScreenIndex = screens[index] ? index : 0;
   lightboxOpen = true;
+  lightboxZoom = false;
   document.body.classList.add("is-lightbox-open");
   renderProjectDetail();
   document.querySelector("[data-close-lightbox]")?.focus();
@@ -281,6 +369,7 @@ function openLightbox(index = 0) {
 
 function closeLightbox() {
   lightboxOpen = false;
+  lightboxZoom = false;
   document.body.classList.remove("is-lightbox-open");
   renderProjectDetail();
   document.querySelector(`[data-open-lightbox="${activeScreenIndex}"]`)?.focus();
@@ -298,6 +387,7 @@ function setActiveProject(slug) {
   activeSlug = exists ? slug : projects[0]?.slug;
   activeScreenIndex = 0;
   lightboxOpen = false;
+  lightboxZoom = false;
   document.body.classList.remove("is-lightbox-open");
   closeHotspots();
   render();
@@ -360,6 +450,7 @@ window.addEventListener("keydown", (event) => {
     if (screens.length > 1) {
       const direction = event.key === "ArrowRight" ? 1 : -1;
       activeScreenIndex = (activeScreenIndex + direction + screens.length) % screens.length;
+      lightboxZoom = false;
       renderProjectDetail();
     }
     return;

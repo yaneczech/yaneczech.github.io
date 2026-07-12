@@ -2,12 +2,43 @@
   "slug": "vijual",
   "title": "Vijual",
   "orderLabel": "01",
-  "annotation": "Aplikace pro práci s vizuálními podklady a jejich přehlednou prezentaci.",
+  "annotation": "Na trhu existují softwary pro VJing, které pracují na modulární bázi s propojováním bodů (nodes), v drtivé většině však pracují primárně na bitmapové bázi. Toto je můj pokus o řešení, který vychází primárně z vektorů a podporuje animaci os variabilních fontů. Software je stále ve vývoji. Základní kód je Rust a TypeScript pro optimálnější výkon. Frontend: SolidJS, Lucide ikon set, custom CSS. Chybí implementace Aranžmá vrstvy a optimalizace výstupního renderu.",
   "links": [],
   "screens": [
     {
-      "title": "Screen 1",
-      "image": "",
+      "title": "Základní obrazovka",
+      "image": "../../assets/screenshots/vijual/01.webp",
+      "alt": "Screenshot aplikace Vijual",
+      "caption": "Nahraj screenshot do assets/screenshots/vijual/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+         {
+    "x": 48.6,
+    "y": 5.5,
+    "title": "Topbar",
+    "text": "Topbar obsahuje branding, název otevřeného projektu, přepínač zobrazení – Relace/Aranžmá – pro různé přístupy kompozice a přepínač mezi tzv. Sessions. V pravé části je transportní ovládání: ovládání přehrávání, nástroje pro synchronizaci se zvukem (včetně nastavení délky věty a indikace pozice), mapování MIDI kanálů a ikonka pro vstup do nastavení."
+  },
+        {
+    "x": 16.9,
+    "y": 52.7,
+    "title": "Pracovní plocha",
+    "text": "Jednotlivé nodes lze vložit přes kontextové sekundární kliknutí nebo přes Command Palette. Propojení jednotlivých uzlů zpravidla dovoluje relace M:N, vstupy a výstupy jsou barevně odděleny pro přehlednost (případnou kompatibilitu) a sémantické dělení."
+  },
+        {
+    "x": 47.7,
+    "y": 54.2,
+    "title": "Vybraný node",
+    "text": "Je vyznačený pomocí výrazné outline, při označení se nahoře vysune kontextová nabídka – Bypass, minimalizace (nezapojené porty se skryjí), zapínání/vypínání spodní části s náhledem a přepínání uzamčení uzlu"
+  },{
+    "x": 97.3,
+    "y": 13.3,
+    "title": "Náhled vybraného node",
+    "text": "Zobrazuje náhled pro vybraný node, případně lze pomocí přepínače přepnout do editačního módu a specifické funce upravovat přímo v okně v rámci WYSIWYG (například pozice, transformace apod.)"
+  }
+      ]
+    },
+    {
+      "title": "Screen 2",
+      "image": "../../assets/screenshots/vijual/02.webp",
       "alt": "Screenshot aplikace Vijual",
       "caption": "Nahraj screenshot do assets/screenshots/vijual/main.jpg a doplň cestu v JSON souboru projektu.",
       "hotspots": [
@@ -32,8 +63,60 @@
       ]
     },
     {
-      "title": "Screen 2",
-      "image": "",
+      "title": "Screen 1",
+      "image": "../../assets/screenshots/vijual/03.webp",
+      "alt": "Screenshot aplikace Vijual",
+      "caption": "Nahraj screenshot do assets/screenshots/vijual/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+        {
+          "x": 22,
+          "y": 24,
+          "title": "Informační hierarchie",
+          "text": "Místo dekorace je důležitá čitelnost priorit: co je hlavní obsah, co je akce a co je jen doplňující stav."
+        },
+        {
+          "x": 67,
+          "y": 42,
+          "title": "Komponentové myšlení",
+          "text": "Prvky jsou navržené tak, aby šly udržovat jako malé opakovatelné části, ne jako jednorázový vizuální návrh."
+        },
+        {
+          "x": 48,
+          "y": 72,
+          "title": "Frontend detail",
+          "text": "Rozestupy, stavy, responzivní chování a focus nejsou dodatečná vrstva, ale součást návrhu."
+        }
+      ]
+    },
+    {
+      "title": "Screen 1",
+      "image": "../../assets/screenshots/vijual/04.webp",
+      "alt": "Screenshot aplikace Vijual",
+      "caption": "Nahraj screenshot do assets/screenshots/vijual/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+        {
+          "x": 22,
+          "y": 24,
+          "title": "Informační hierarchie",
+          "text": "Místo dekorace je důležitá čitelnost priorit: co je hlavní obsah, co je akce a co je jen doplňující stav."
+        },
+        {
+          "x": 67,
+          "y": 42,
+          "title": "Komponentové myšlení",
+          "text": "Prvky jsou navržené tak, aby šly udržovat jako malé opakovatelné části, ne jako jednorázový vizuální návrh."
+        },
+        {
+          "x": 48,
+          "y": 72,
+          "title": "Frontend detail",
+          "text": "Rozestupy, stavy, responzivní chování a focus nejsou dodatečná vrstva, ale součást návrhu."
+        }
+      ]
+    },
+    {
+      "title": "Screen 1",
+      "image": "../../assets/screenshots/vijual/05.webp",
       "alt": "Screenshot aplikace Vijual",
       "caption": "Nahraj screenshot do assets/screenshots/vijual/main.jpg a doplň cestu v JSON souboru projektu.",
       "hotspots": [

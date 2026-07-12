@@ -36,7 +36,7 @@
         <p>
           Vyber projekt a screenshot, případně nahraj lokální obrázek pro přesný
           náhled. Kliknutím do obrázku přidáš bod, tažením ho doladíš a výstup
-          zkopíruješ zpět do JSON souboru projektu.
+          uložíš přímo do JSON souboru projektu.
         </p>
       </section>
 
@@ -48,8 +48,33 @@
           </label>
 
           <label class="mapper-field">
+            <span>Anotace projektu</span>
+            <textarea
+              id="mapper-project-annotation"
+              class="mapper-textarea"
+              rows="4"
+              spellcheck="true"
+            ></textarea>
+          </label>
+
+          <label class="mapper-field">
             <span>Screenshot</span>
             <select id="mapper-screen"></select>
+          </label>
+
+          <label class="mapper-field">
+            <span>Název screenu</span>
+            <input id="mapper-screen-title-input" class="mapper-input" type="text" />
+          </label>
+
+          <label class="mapper-field">
+            <span>Popisek screenu</span>
+            <textarea
+              id="mapper-screen-caption-input"
+              class="mapper-textarea"
+              rows="3"
+              spellcheck="true"
+            ></textarea>
           </label>
 
           <label class="mapper-file">
@@ -59,7 +84,7 @@
 
           <div class="mapper-note">
             Nahrání obrázku slouží jen pro tento náhled. Soubor se nikam
-            neukládá; výsledkem jsou pouze procenta <code>x</code> a <code>y</code>.
+            neukládá; tlačítko Save ukládá texty a anotační body do JSONu.
           </div>
 
           <div class="mapper-actions">
@@ -102,10 +127,19 @@
 
           <div class="mapper-panel-head mapper-output-head">
             <h2>Výstup pro JSON projektu</h2>
-            <button class="mapper-button" type="button" data-copy>
-              Kopírovat
-            </button>
+            <div class="mapper-output-actions">
+              <button class="mapper-button" type="button" data-save disabled>
+                Uložit do JSONu
+              </button>
+              <button class="mapper-button" type="button" data-copy>
+                Kopírovat
+              </button>
+            </div>
           </div>
+
+          <p class="mapper-save-status" id="mapper-save-status">
+            Přímé ukládání je dostupné po spuštění lokálního annotation serveru.
+          </p>
 
           <textarea
             id="mapper-output"

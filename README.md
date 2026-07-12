@@ -10,6 +10,17 @@ python3 -m http.server 8080
 
 Potom otevři `http://localhost:8080`.
 
+Pokud chceš z pomocné stránky anotací ukládat body přímo do JSON souborů, spusť
+místo toho lokální annotation server:
+
+```bash
+node tools/annotation-server.mjs
+```
+
+Potom otevři `http://localhost:8080/annotations.html`. Tlačítko „Uložit do
+JSONu“ je dostupné jen v tomto lokálním režimu; na GitHub Pages zůstává web
+statický a soubory nezapisuje.
+
 ## Jak doplnit projekty
 
 Hlavní obsah je ve složce:
@@ -78,7 +89,7 @@ Hotspoty jsou v procentech vůči screenshotu:
 
 `x` je vodorovná pozice, `y` je svislá pozice.
 
-### Pomocné mapování hotspotů
+### Pomocné mapování hotspotů a editace screenů
 
 Pro rychlé určení pozic otevři:
 
@@ -86,9 +97,10 @@ Pro rychlé určení pozic otevři:
 http://localhost:8080/annotations.html
 ```
 
-Stránka načte projekty z `data/projects/`, dovolí nahrát lokální screenshot pro
-náhled a po kliknutí/tažení bodů vygeneruje blok `hotspots`, který můžeš vložit
-zpět k danému screenshotu v JSON souboru projektu.
+Stránka načte projekty z `data/projects/`, dovolí upravit anotaci projektu,
+název screenu, popisek screenu a anotační body. Při spuštění přes
+`node tools/annotation-server.mjs` tlačítko „Uložit do JSONu“ zapíše změny
+přímo do příslušného JSON souboru.
 
 ## Publikace na GitHub Pages
 

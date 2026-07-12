@@ -2,11 +2,11 @@
   --background: #faf6ee;
   --panel: #ffffff;
   --text: #111111;
-  --muted: #afa495;
-  --quiet: #9e968b;
+  --muted: #6e675d;
+  --quiet: #655f56;
   --line: #e5ddd0;
   --line-strong: #111111;
-  --accent: #6E7973;
+  --accent: #626d67;
   --accent-dark: #525B56;
   --surface: #f2ece1;
   --surface-2: #ebe1d2;
@@ -119,11 +119,14 @@ button {
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 10px 18px;
-  color: var(--muted);
+  color: var(--surface-2);
   font-size: 14px;
 }
 
 .top-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
   text-decoration: none;
 }
 
@@ -327,6 +330,7 @@ button {
 
 select,
 .annotation-toggle,
+.zoom-toggle,
 .screen-open,
 .lightbox-close {
   min-height: 32px;
@@ -340,6 +344,7 @@ select,
 
 select,
 .annotation-toggle, 
+.zoom-toggle,
 .screen-open,
 .lightbox-close  {
   border-radius: 999px;
@@ -411,6 +416,49 @@ select,
 
 .annotation-toggle.is-on .annotation-toggle__thumb {
   transform: translateX(18px);
+}
+
+.zoom-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.zoom-toggle svg {
+  flex: 0 0 auto;
+}
+
+.zoom-toggle span {
+  line-height: 1;
+}
+
+.zoom-toggle span + span {
+  color: var(--muted);
+}
+
+.zoom-toggle:hover,
+.zoom-toggle.is-on {
+  background: var(--text);
+  color: var(--background);
+}
+
+.zoom-toggle:hover span + span,
+.zoom-toggle.is-on span + span {
+  color: var(--surface-2);
+}
+
+.zoom-toggle:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.zoom-toggle:disabled:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.zoom-toggle:disabled:hover span + span {
+  color: var(--muted);
 }
 
 .screen-switcher {
@@ -508,7 +556,7 @@ select,
 
 .screen-placeholder p {
   margin: 0;
-  color: #9ea69f;
+  color: var(--accent);
   font-size: clamp(28px, 4vw, 54px);
   line-height: 1;
   letter-spacing: normal;
@@ -654,8 +702,48 @@ select,
   min-height: 0;
 }
 
+.lightbox.is-zoomed .lightbox-figure {
+  position: relative;
+  display: block;
+  max-height: calc(100vh - 156px);
+  overflow: auto;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  scrollbar-gutter: stable;
+  cursor: grab;
+  touch-action: pan-x pan-y;
+  user-select: none;
+}
+
+.lightbox.is-zoomed .lightbox-figure::after {
+  content: "";
+  position: sticky;
+  right: 14px;
+  bottom: 14px;
+  z-index: 120;
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: -46px 14px 14px auto;
+  color: var(--accent-dark);
+  background-color: var(--background);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16'%3E%3Cpath fill='%23525B56' fill-rule='evenodd' d='M7.946 9.976c1.075 0 2.044-.89 2.044-1.988S9.02 6 7.946 6S6 6.89 6 7.988s.871 1.988 1.946 1.988M5.21 3.984c-.198-.229-.236-.68-.034-.914L7.55.136a.466.466 0 0 1 .729-.005l2.537 2.951c.202.229.202.67 0 .902zm5.61 8.057a.47.47 0 0 1 0 .688l-2.506 3.104a.59.59 0 0 1-.725 0l-2.365-3.104a.467.467 0 0 1 0-.686l5.597-.002zm2.11-6.773l2.934 2.306a.5.5 0 0 1 .006.76l-2.948 2.411c-.228.207-.654.211-.886 0V5.262s.661-.204.894.006m-8.917 5.521c-.23.209-.688.207-.917 0L.164 8.33a.502.502 0 0 1 .004-.76l2.908-2.357c.229-.207.707-.209.937 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+}
+
+.lightbox.is-zoomed .lightbox-figure.is-panning {
+  cursor: grabbing;
+}
+
 .lightbox .screen-frame {
   align-self: start;
+}
+
+.lightbox.is-zoomed .screen-frame {
+  width: max-content;
+  max-width: none;
 }
 
 .lightbox .screen-canvas {
@@ -669,10 +757,24 @@ select,
   background: transparent;
 }
 
+.lightbox.is-zoomed .screen-canvas.has-image {
+  width: max-content;
+  max-width: none;
+  margin: 0;
+  border: 0;
+  background: var(--surface);
+}
+
 .lightbox .screen-canvas.has-image img {
   width: auto;
   max-width: 100%;
   max-height: calc(100vh - 140px);
+}
+
+.lightbox.is-zoomed .screen-canvas.has-image img {
+  width: min(180vw, 2200px);
+  max-width: none;
+  max-height: none;
 }
 
 .lightbox .screen-placeholder {
@@ -824,6 +926,14 @@ select,
   .lightbox .screen-canvas.has-image img {
     width: 100%;
     max-height: none;
+  }
+
+  .lightbox.is-zoomed .screen-canvas.has-image {
+    width: max-content;
+  }
+
+  .lightbox.is-zoomed .screen-canvas.has-image img {
+    width: min(220vw, 1800px);
   }
 }
 
