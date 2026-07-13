@@ -2,23 +2,139 @@
   "slug": "vijual-bake-studio",
   "title": "Vijual Bake Studio",
   "orderLabel": "02",
-  "type": "navazující produkt",
-  "role": "produktový design, UI systém, frontend implementace",
-  "annotation": "Navazující workflow k Vijualu pro přípravu a kontrolu výstupů v dalším kroku procesu.",
-  "intro": "Navazující část ekosystému Vijual. V portfoliu má smysl ji ukázat hned po hlavní aplikaci, protože vysvětluje rozšíření stejného principu do dalšího pracovního toku.",
-  "context": "Projekt řeší, jak zachovat konzistentní jazyk rozhraní a současně podpořit specifický proces, který má jiné tempo i jiné priority než hlavní aplikace.",
-  "decisions": [
-    "Návaznost na Vijual bez slepého kopírování stejné obrazovky.",
-    "Vizuální systém drží kontinuitu, ale pracovní akce mají vlastní prioritu.",
-    "Rozhraní počítá s tím, že uživatel potřebuje rychle ověřovat stav a výsledek."
+  "annotation": "Při tvorbě Vijualu jsem narazil na bod, kdy jsem potřeboval implementaci uzlu pro přehrávání videa. Zjistil jsem ale, že je problematické video cíleně ovládat v rámci parametrickcýh nodů. Tak jsem přišel s vlastní verzí kontejneru pro videa, který by umožnil to, co například formát REX v DAW Reason, a sice že klip má definované bloky a SW k nim může ad hoc přistupovat dle potřeby. Formát je kombinací komprimovaného videa a json definice časových bodů a jejich kontextu. Celé zabalené v ZIP formátu. Definice formátu je volně na Githubu, tento SW pomáhá k vytváření konkrétních videokontejnerů.",
+  "links": [
+    {
+      "label": "GitHub: yaneczech/vjb-format",
+      "url": "https://github.com/yaneczech/vjb-format"
+    }
   ],
-  "implementation": "Frontend část je vhodné prezentovat přes detailní stavy, responzivní chování a práci s komponentami, které se dají vysvětlit přímo nad screenshotem.",
-  "status": "Autorský stav / vlastní produktový směr.",
-  "links": [],
   "screens": [
     {
-      "title": "Navazující workflow",
-      "image": "",
+      "title": "Úvodní obrazovka",
+      "image": "../../assets/screenshots/bakery/01.webp",
+      "alt": "Screenshot aplikace Vijual Bake Studio",
+      "caption": "Nahraj screenshot do assets/screenshots/vijual-bake-studio/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+  {
+    "x": 31.5,
+    "y": 8.5,
+    "title": "Kroky",
+    "text": "SW je založen na principu tzv. wizardu, tj. provází uživatele krok po kroku k cíli a dávkuje jednotlivé části dle kontextu. Zde je vyznačeno, ve které fázi se uživatel nachází."
+  },
+  {
+    "x": 60.2,
+    "y": 8.5,
+    "title": "Informace o médiu",
+    "text": "Zde jsou průběžně zobrazovány základní informace o médiu. V pravé části je pak ikona pro přechod do Nastavení."
+  },
+  {
+    "x": 76,
+    "y": 29.9,
+    "title": "Výběr média",
+    "text": "Zde vybírá uživatel zdrojový soubor videa (klipu) a zadává analýzu. Lze udělat ve dvou krocích, nebo v jednom."
+  },
+  {
+    "x": 25.8,
+    "y": 41.5,
+    "title": "Náhled klipu",
+    "text": "Zde se zobrazuje náhled (zpravidla první snímek) klipu"
+  },
+  {
+    "x": 74.7,
+    "y": 43,
+    "title": "Výsledky analýzy",
+    "text": "Zde se zobrazí detailní informace o médiu po provedené analýze."
+  },
+  {
+    "x": 76,
+    "y": 78.6,
+    "title": "Přechod do další části",
+    "text": "Uživatel tímto předává dál zvolený klip do další fáze wizardu."
+  }
+]
+    },
+     {
+      "title": "Úvodní obrazovka",
+      "image": "../../assets/screenshots/bakery/02.webp",
+      "alt": "Screenshot aplikace Vijual Bake Studio",
+      "caption": "Nahraj screenshot do assets/screenshots/vijual-bake-studio/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+        {
+          "x": 28,
+          "y": 30,
+          "title": "Kontinuita systému",
+          "text": "Rozhraní navazuje na Vijual, ale nepředstírá, že jde o stejný typ práce."
+        },
+        {
+          "x": 72,
+          "y": 36,
+          "title": "Priorita akcí",
+          "text": "Důležité akce mají jasnou pozici a viditelnost bez nutnosti přidávat další vizuální vrstvy."
+        },
+        {
+          "x": 54,
+          "y": 68,
+          "title": "Stavy a zpětná vazba",
+          "text": "Stav procesu je součást návrhu, ne až textová hláška přidaná na konci implementace."
+        }
+      ]
+    },
+     {
+      "title": "Úvodní obrazovka",
+      "image": "../../assets/screenshots/bakery/03.webp",
+      "alt": "Screenshot aplikace Vijual Bake Studio",
+      "caption": "Nahraj screenshot do assets/screenshots/vijual-bake-studio/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+        {
+          "x": 28,
+          "y": 30,
+          "title": "Kontinuita systému",
+          "text": "Rozhraní navazuje na Vijual, ale nepředstírá, že jde o stejný typ práce."
+        },
+        {
+          "x": 72,
+          "y": 36,
+          "title": "Priorita akcí",
+          "text": "Důležité akce mají jasnou pozici a viditelnost bez nutnosti přidávat další vizuální vrstvy."
+        },
+        {
+          "x": 54,
+          "y": 68,
+          "title": "Stavy a zpětná vazba",
+          "text": "Stav procesu je součást návrhu, ne až textová hláška přidaná na konci implementace."
+        }
+      ]
+    },
+     {
+      "title": "Úvodní obrazovka",
+      "image": "../../assets/screenshots/bakery/04.webp",
+      "alt": "Screenshot aplikace Vijual Bake Studio",
+      "caption": "Nahraj screenshot do assets/screenshots/vijual-bake-studio/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+        {
+          "x": 28,
+          "y": 30,
+          "title": "Kontinuita systému",
+          "text": "Rozhraní navazuje na Vijual, ale nepředstírá, že jde o stejný typ práce."
+        },
+        {
+          "x": 72,
+          "y": 36,
+          "title": "Priorita akcí",
+          "text": "Důležité akce mají jasnou pozici a viditelnost bez nutnosti přidávat další vizuální vrstvy."
+        },
+        {
+          "x": 54,
+          "y": 68,
+          "title": "Stavy a zpětná vazba",
+          "text": "Stav procesu je součást návrhu, ne až textová hláška přidaná na konci implementace."
+        }
+      ]
+    },
+     {
+      "title": "Úvodní obrazovka",
+      "image": "../../assets/screenshots/bakery/05.webp",
       "alt": "Screenshot aplikace Vijual Bake Studio",
       "caption": "Nahraj screenshot do assets/screenshots/vijual-bake-studio/main.jpg a doplň cestu v JSON souboru projektu.",
       "hotspots": [

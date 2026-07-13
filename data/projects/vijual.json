@@ -2,7 +2,7 @@
   "slug": "vijual",
   "title": "Vijual",
   "orderLabel": "01",
-  "annotation": "Na trhu existují softwary pro VJing, které pracují na modulární bázi s propojováním bodů (nodes), v drtivé většině však pracují primárně na bitmapové bázi. Toto je můj pokus o řešení, který vychází primárně z vektorů a podporuje animaci os variabilních fontů. Software je stále ve vývoji. Základní kód je Rust a TypeScript pro optimálnější výkon. Frontend: SolidJS, Lucide ikon set, custom CSS. Chybí implementace Aranžmá vrstvy a optimalizace výstupního renderu.",
+  "annotation": "Na trhu existují softwary pro VJing, které pracují na modulární bázi s propojováním bodů (nodes), v drtivé většině však pracují primárně na bitmapové bázi. Toto je můj pokus o řešení, který vychází primárně z vektorů a podporuje animaci os variabilních fontů. Software je stále ve vývoji. Základní kód je Rust a TypeScript pro optimálnější výkon. Frontend: SolidJS, Lucide icon set, custom CSS. Chybí implementace Aranžmá vrstvy, video nodu a optimalizace lokalizace a výstupního renderu.",
   "links": [],
   "screens": [
     {
@@ -28,117 +28,118 @@
     "y": 54.2,
     "title": "Vybraný node",
     "text": "Je vyznačený pomocí výrazné outline, při označení se nahoře vysune kontextová nabídka – Bypass, minimalizace (nezapojené porty se skryjí), zapínání/vypínání spodní části s náhledem a přepínání uzamčení uzlu"
-  },{
+  },
+  {
     "x": 97.3,
     "y": 13.3,
     "title": "Náhled vybraného node",
     "text": "Zobrazuje náhled pro vybraný node, případně lze pomocí přepínače přepnout do editačního módu a specifické funce upravovat přímo v okně v rámci WYSIWYG (například pozice, transformace apod.)"
+  },
+  {
+    "x": 97.4,
+    "y": 34.1,
+    "title": "Náhled výstupu",
+    "text": "Zde se zobrazuje náhled výstupu celkové kompozice. Doplněno o výstupní rozlišení, aktuální framerate a ikonka pro detach okna pro práci na více monitorech."
+  },
+  {
+    "x": 93.4,
+    "y": 49.5,
+    "title": "Inspektor",
+    "text": "Zde se zobrazuje nastavení pro vybraný node. Jednotlivé typy jsou agregovány do skupin dle významu a důležitosti/užitečnosti při využití. U komplexnějších uzlů jsou k dispozici praktické presety (například Matematický výraz). Pokud je parametr ovládán externě, je označen fialovou barvou. Číselná pole mají dole tzv. scrubbery pro jednodušší zadávání hodnot myší."
   }
       ]
     },
     {
-      "title": "Screen 2",
+      "title": "Náhledy a skupiny",
       "image": "../../assets/screenshots/vijual/02.webp",
       "alt": "Screenshot aplikace Vijual",
       "caption": "Nahraj screenshot do assets/screenshots/vijual/main.jpg a doplň cestu v JSON souboru projektu.",
       "hotspots": [
-        {
-          "x": 22,
-          "y": 24,
-          "title": "Informační hierarchie",
-          "text": "Místo dekorace je důležitá čitelnost priorit: co je hlavní obsah, co je akce a co je jen doplňující stav."
-        },
-        {
-          "x": 67,
-          "y": 42,
-          "title": "Komponentové myšlení",
-          "text": "Prvky jsou navržené tak, aby šly udržovat jako malé opakovatelné části, ne jako jednorázový vizuální návrh."
-        },
-        {
-          "x": 48,
-          "y": 72,
-          "title": "Frontend detail",
-          "text": "Rozestupy, stavy, responzivní chování a focus nejsou dodatečná vrstva, ale součást návrhu."
-        }
+         {
+    "x": 3.2,
+    "y": 53.8,
+    "title": "XY Pad",
+    "text": "Náhledová část nodu slouží zároveň interaktivně v režimu drag and drop pro nastavení hodnot."
+  },
+  {
+    "x": 31.1,
+    "y": 63.1,
+    "title": "Skupiny nodů",
+    "text": "Lze vytvářet skupiny nodů, ty si pojmenovávat, měnit jim barvy, ukládat i sdílet pomocí JSON formátu. Aplikace má vlastní modální okno pro správu těchto přednastavení. Výzvou bylo řešení komplexního kolapsu všech nodů naráz uvnitř skupiny při minimalizaci."
+  },
+  {
+    "x": 62.4,
+    "y": 84.6,
+    "title": "Náhledy nodů v dolní části",
+    "text": "Některým nodům lze zobrazit náhledy přímo v pracovní ploše. Tyto náhledy jsou i podle potřeb dynamické, nebo interaktivní."
+  }
       ]
     },
     {
-      "title": "Screen 1",
+      "title": "MIDI Learn & Inspektor",
       "image": "../../assets/screenshots/vijual/03.webp",
       "alt": "Screenshot aplikace Vijual",
       "caption": "Nahraj screenshot do assets/screenshots/vijual/main.jpg a doplň cestu v JSON souboru projektu.",
       "hotspots": [
         {
-          "x": 22,
-          "y": 24,
-          "title": "Informační hierarchie",
-          "text": "Místo dekorace je důležitá čitelnost priorit: co je hlavní obsah, co je akce a co je jen doplňující stav."
-        },
-        {
-          "x": 67,
-          "y": 42,
-          "title": "Komponentové myšlení",
-          "text": "Prvky jsou navržené tak, aby šly udržovat jako malé opakovatelné části, ne jako jednorázový vizuální návrh."
-        },
-        {
-          "x": 48,
-          "y": 72,
-          "title": "Frontend detail",
-          "text": "Rozestupy, stavy, responzivní chování a focus nejsou dodatečná vrstva, ale součást návrhu."
-        }
+    "x": 98,
+    "y": 5,
+    "title": "MIDI Learn",
+    "text": "Aplikace má režim MIDI Learn, který je inspirovaný softwarem Ableton Live. Při aktivaci se označí pole, kterým lze přiřadit ovládání. Stačí pole označit a provést změnu na MIDI kontroléru. Software si automaticky přiřadí potřebný kanál."
+  },
+  {
+    "x": 92,
+    "y": 61.6,
+    "title": "Referenční matice",
+    "text": "U relevantních typů nodů (zpravidla objektových) je k dipozici klasický referenční anchor matrix."
+  },
+  {
+    "x": 89.9,
+    "y": 90,
+    "title": "Vstupní pole",
+    "text": "Číselná pole mají dole tzv. scrubbery pro jednodušší zadávání hodnot myší pomocí drag funkce. Oranžový otline zde naznačuje, že na pole lze namapovat MIDI kontroler (MIDI Learn mód je zapnutý). Pokud má parametr omezené hodnoty, jsou tyto hodnoty zpravidla uvedeny za labelem. Hodnoty lze i zamykat v poměru."
+  },
+  {
+    "x": 18,
+    "y": 96,
+    "title": "Kontextová nápověda",
+    "text": "V rámci označených objektů v pracovní ploše se zobrazuje i relevantní kontextová nápověda."
+  }
       ]
     },
     {
-      "title": "Screen 1",
+      "title": "Command palette",
       "image": "../../assets/screenshots/vijual/04.webp",
       "alt": "Screenshot aplikace Vijual",
       "caption": "Nahraj screenshot do assets/screenshots/vijual/main.jpg a doplň cestu v JSON souboru projektu.",
       "hotspots": [
-        {
-          "x": 22,
-          "y": 24,
-          "title": "Informační hierarchie",
-          "text": "Místo dekorace je důležitá čitelnost priorit: co je hlavní obsah, co je akce a co je jen doplňující stav."
-        },
-        {
-          "x": 67,
-          "y": 42,
-          "title": "Komponentové myšlení",
-          "text": "Prvky jsou navržené tak, aby šly udržovat jako malé opakovatelné části, ne jako jednorázový vizuální návrh."
-        },
-        {
-          "x": 48,
-          "y": 72,
-          "title": "Frontend detail",
-          "text": "Rozestupy, stavy, responzivní chování a focus nejsou dodatečná vrstva, ale součást návrhu."
-        }
-      ]
+  {
+    "x": 23.5,
+    "y": 14.3,
+    "title": "Řádek Command palette",
+    "text": "Tato funkce je inspirovaná VS Code pro jednoduchý a rychlý přístup k nodům a funkcím SW Vijual. Během psaní se automaticky filtruje seznam."
+  }
+]
     },
     {
-      "title": "Screen 1",
+      "title": "Nastavení",
       "image": "../../assets/screenshots/vijual/05.webp",
       "alt": "Screenshot aplikace Vijual",
       "caption": "Nahraj screenshot do assets/screenshots/vijual/main.jpg a doplň cestu v JSON souboru projektu.",
       "hotspots": [
-        {
-          "x": 22,
-          "y": 24,
-          "title": "Informační hierarchie",
-          "text": "Místo dekorace je důležitá čitelnost priorit: co je hlavní obsah, co je akce a co je jen doplňující stav."
-        },
-        {
-          "x": 67,
-          "y": 42,
-          "title": "Komponentové myšlení",
-          "text": "Prvky jsou navržené tak, aby šly udržovat jako malé opakovatelné části, ne jako jednorázový vizuální návrh."
-        },
-        {
-          "x": 48,
-          "y": 72,
-          "title": "Frontend detail",
-          "text": "Rozestupy, stavy, responzivní chování a focus nejsou dodatečná vrstva, ale součást návrhu."
-        }
-      ]
+  {
+    "x": 28.7,
+    "y": 30.9,
+    "title": "Předvolby",
+    "text": "Předvolby jsou třízeny dle témat (levý sloupec), relevatní parametry se zobrazují v pravém sloupci."
+  },
+  {
+    "x": 38.9,
+    "y": 68.6,
+    "title": "Reconnect",
+    "text": "Ovládání funkce, kdy se aplikace po smazání průběžného bodu pokusí obnovit maximum původních relací mezi zbývajícími body."
+  }
+]
     }
   ]
 }

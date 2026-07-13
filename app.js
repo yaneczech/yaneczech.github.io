@@ -59,6 +59,7 @@ function renderProjectDetail() {
     <header class="case-header">
       <h2>${escapeHtml(project.title)}</h2>
       ${project.annotation ? `<p class="case-annotation">${escapeHtml(project.annotation)}</p>` : ""}
+      ${renderProjectLinks(project.links)}
     </header>
 
     <div class="screen-stack" aria-label="Anotované screenshoty">
@@ -89,6 +90,31 @@ function renderProjectDetail() {
   `;
 
   bindDetailInteractions();
+}
+
+function renderProjectLinks(links = []) {
+  const items = links.filter((link) => link?.url);
+  if (!items.length) return "";
+
+  return `
+    <nav class="case-links" aria-label="Odkazy k projektu">
+      ${items
+        .map((link) => {
+          const label = link.label || link.url;
+          const isExternal = /^https?:\/\//i.test(link.url);
+
+          return `
+            <a
+              href="${escapeHtml(link.url)}"
+              ${isExternal ? 'target="_blank" rel="noreferrer"' : ""}
+            >
+              ${escapeHtml(label)}
+            </a>
+          `;
+        })
+        .join("")}
+    </nav>
+  `;
 }
 
 function renderScreenToolbar(screen, index) {
@@ -150,7 +176,7 @@ function renderScreenFrame(screen, idPrefix = "inline", index = activeScreenInde
       <div class="screen-canvas ${hasImage ? "has-image" : ""}">
         ${
           hasImage
-            ? `<img src="${escapeHtml(screen.image)}" alt="${escapeHtml(screen.alt)}" loading="lazy" />`
+            ? `<img src="${escapeHtml(screen.image)}" alt="${escapeHtml(screen.alt)}" loading="lazy" draggable="false" />`
             : renderPlaceholderScreen()
         }
 
@@ -210,7 +236,7 @@ function renderLightbox(project, screen) {
             ${renderAnnotationToggle(activeScreenIndex)}
             ${renderZoomToggle(Boolean(screen?.image))}
             <button class="lightbox-close" type="button" data-close-lightbox title="Zavřít">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><!-- Icon from SmartIcons Glyph by SmartIcons - https://creativecommons.org/licenses/by-sa/4.0/ --><path fill="currentColor" fill-rule="evenodd" d="M15.995 1.852L14.133.008l-3.026 2.98L9.062.972v5.903h5.987l-2.076-2.047zM.961 9.008l2.097 2.087l-3.053 3.033l1.88 1.88l3.057-3.038l1.967 1.996V9.008z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><!-- Icon from Lets Icons by Leonid Tsvetkov - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="round" stroke-width="2" d="M18 6L6 18M6 6l12 12"/></svg>
             </button>
           </div>
         </header>
@@ -309,6 +335,7 @@ function bindLightboxPan() {
     if (event.pointerType !== "mouse" || event.button !== 0) return;
     if (event.target.closest("button, a")) return;
 
+    event.preventDefault();
     isPanning = true;
     startX = event.clientX;
     startY = event.clientY;
@@ -321,8 +348,13 @@ function bindLightboxPan() {
   figure.addEventListener("pointermove", (event) => {
     if (!isPanning) return;
 
+    event.preventDefault();
     figure.scrollLeft = scrollLeft - (event.clientX - startX);
     figure.scrollTop = scrollTop - (event.clientY - startY);
+  });
+
+  figure.addEventListener("dragstart", (event) => {
+    event.preventDefault();
   });
 
   function stopPanning(event) {
