@@ -2,45 +2,312 @@
   "slug": "rozvrhel",
   "title": "Rozvrhel",
   "orderLabel": "03",
-  "type": "aplikace / plánování",
-  "role": "UX/UI design, informační architektura, frontend implementace",
-  "annotation": "Nástroj pro rychlou orientaci v rozvrhu, plánování a stavových informacích.",
-  "intro": "Aplikace pro přehled nad rozvrhem a plánováním. Silná ukázka práce s komplexnější strukturou, kde je potřeba udržet rychlou orientaci a praktickou použitelnost.",
-  "context": "U plánovacích nástrojů často rozhoduje méně grafický efekt a více přesná hierarchie, čitelnost stavů a stabilní chování rozhraní.",
-  "decisions": [
-    "Rozvrhové informace jsou vedené jako primární obsah, ne jako dekorativní tabulka.",
-    "Důležité stavy a konflikty musí být poznatelné bez dlouhého vysvětlování.",
-    "Interakce mají podporovat rychlou kontrolu, ne zbytečné přepínání kontextu."
-  ],
-  "implementation": "Projekt je vhodný pro ukázku layoutu, responzivních pravidel, detailu tabulek/slotů a přístupnosti ovládacích prvků.",
-  "status": "Ukázky doporučuji popsat přes autorský návrh a implementační řešení.",
+  "annotation": "V rámci střední školy, na které učím, je vždy velká výzva řešení rozvrhu. Škola má několik budov po městě, obory jsou děleny i v rámci tříd, plus ještě na menší skupiny. Navrhnul jsem tak nástroj pro generování a správu rozvrhů pro školy, který umožňuje vytvářet různé varianty/sestavy, které lze pak dál spravovat. Systém běží na Electronu, TypeScriptu, TailwindCSS vycházející z Material Design. V rámci projektu jsem řešil i UX a UI, které je založeno na principu mřížky a vizuální hierarchie.",
   "links": [],
   "screens": [
     {
-      "title": "Rozvrhová plocha",
-      "image": "",
+      "title": "Úvodní obrazovka",
+      "image": "../../assets/screenshots/rozvrhel/01.webp",
       "alt": "Screenshot aplikace Rozvrhel",
       "caption": "Nahraj screenshot do assets/screenshots/rozvrhel/main.jpg a doplň cestu v JSON souboru projektu.",
       "hotspots": [
-        {
-          "x": 18,
-          "y": 38,
-          "title": "Rychlé skenování",
-          "text": "Rozhraní musí jít číst po řádcích i po blocích; uživatel nesmí ztratit orientaci v mřížce."
-        },
-        {
-          "x": 62,
-          "y": 28,
-          "title": "Stavové informace",
-          "text": "Konflikty, volné sloty nebo upozornění mají mít jasnou vizuální prioritu."
-        },
-        {
-          "x": 78,
-          "y": 72,
-          "title": "Responzivní pravidla",
-          "text": "U plánovacích rozhraní nestačí prosté zmenšení. Je potřeba rozhodnout, co se skládá, co zůstává a co se mění v detail."
-        }
-      ]
+  {
+    "x": 2.8,
+    "y": 3.4,
+    "title": "Nabídka",
+    "text": "Jednotlivé obrazovky jsou přístupné přes levý vertikální panel, jsou reprezentovány ikonou a labelem. Jsou i rozděleny podle sémantiky do jednotlivých sekcí."
+  },
+  {
+    "x": 26.8,
+    "y": 19.7,
+    "title": "Přehled",
+    "text": "Celkový přehled informací v systému"
+  },
+  {
+    "x": 26.8,
+    "y": 40.9,
+    "title": "Checklist",
+    "text": "Checklist toho, co jen třeba minimálně  vyplnit pro generování rozvrhu."
+  }
+]
+    },
+    {
+      "title": "Obory",
+      "image": "../../assets/screenshots/rozvrhel/02.webp",
+      "alt": "Screenshot aplikace Rozvrhel",
+      "caption": "Nahraj screenshot do assets/screenshots/rozvrhel/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+  {
+    "x": 26.8,
+    "y": 76.9,
+    "title": "Karta oboru",
+    "text": "Na této obrazovce jsou jednotlivé obory, které jsou reprezentovány kartami akordeonu."
+  },
+  {
+    "x": 29.8,
+    "y": 21.8,
+    "title": "Tabulka hodinových dotací",
+    "text": "Uvnitř karty oboru se nachází tabulka s hodinovými dotacemi předmětů pro jednotlivé ročníky. Pokud hodiny nejsou přiřazeny, zobrazuje se červená šipka, která uživatele po kliknutí navede na modální okno, kde tento blok může přímo přiřadit."
+  }
+]
+    },
+    {
+      "title": "Předměty",
+      "image": "../../assets/screenshots/rozvrhel/03.webp",
+      "alt": "Screenshot aplikace Rozvrhel",
+      "caption": "Nahraj screenshot do assets/screenshots/rozvrhel/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+  {
+    "x": 32,
+    "y": 13.1,
+    "title": "Rychlé skenování",
+    "text": "Rozhraní musí jít číst po řádcích i po blocích; uživatel nesmí ztratit orientaci v mřížce."
+  },
+  {
+    "x": 6.3,
+    "y": 25.9,
+    "title": "Položka Předmětu",
+    "text": "Jednotlivé položky mají definované barvy, obory a přiřazené typy učeben (ty lze definovat v Nastavení). Pomocí six-dot ikony lze pomocí drag and drop upravovat pořadí v seznamu."
+  },
+  {
+    "x": 83.7,
+    "y": 55.5,
+    "title": "Možnosti",
+    "text": "Každá položka má jednoduše přístupnou duplikaci, úpravu a smazání. Mazání je vžýdy potvrzováno dialogem."
+  }
+]
+    },
+    {
+      "title": "Přidání předmětu",
+      "image": "../../assets/screenshots/rozvrhel/04.webp",
+      "alt": "Screenshot aplikace Rozvrhel",
+      "caption": "Nahraj screenshot do assets/screenshots/rozvrhel/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+  {
+    "x": 85.1,
+    "y": 7.6,
+    "title": "Přidání položky",
+    "text": "Tlačítka pro přidání se nachází vpravo nahoře obrazovek."
+  },
+  {
+    "x": 29.9,
+    "y": 28.9,
+    "title": "Modální okno",
+    "text": "Modální okna pro přidávání mají jednoduchý design, select pole mají vyhledávání a nastaven autocomplete."
+  }
+]
+    },
+    {
+      "title": "Učitelé",
+      "image": "../../assets/screenshots/rozvrhel/05.webp",
+      "alt": "Screenshot aplikace Rozvrhel",
+      "caption": "Nahraj screenshot do assets/screenshots/rozvrhel/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+  {
+    "x": 4.5,
+    "y": 13.1,
+    "title": "Filtrování hledáním",
+    "text": "Pro filtrování dat slouží fulltextové vyhledávací pole."
+  },
+  {
+    "x": 5.1,
+    "y": 58.9,
+    "title": "Položka",
+    "text": "Jednotlivé položky učitele mají přiřazenou barvu, předměty, dostupnost a ikony pro editaci a smazání"
+  },
+  {
+    "x": 67.9,
+    "y": 59.8,
+    "title": "Jednoduché přiřazení",
+    "text": "Aby člověk nemusel otevírat modální editační okno, lze kliknout do buňky a pomocí selectu s vyhledáváním rovnou přiřadit data."
+  }
+]
+    },
+    {
+      "title": "Budovy",
+      "image": "../../assets/screenshots/rozvrhel/06.webp",
+      "alt": "Screenshot aplikace Rozvrhel",
+      "caption": "Nahraj screenshot do assets/screenshots/rozvrhel/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+  {
+    "x": 15.4,
+    "y": 16.4,
+    "title": "Přehled budov školy",
+    "text": "Školy mohou mít více budov, zde je lze spravovat"
+  },
+  {
+    "x": 5.2,
+    "y": 47,
+    "title": "Časy přesunů",
+    "text": "Pro optimální generování rozvrhů lze nastavit časy přesunů mezi jednotlivými budovami, aby systém optimalizoval a minimalizoval komplikované přesuny."
+  }
+]
+    },
+    {
+      "title": "Učebny",
+      "image": "../../assets/screenshots/rozvrhel/07.webp",
+      "alt": "Screenshot aplikace Rozvrhel",
+      "caption": "Nahraj screenshot do assets/screenshots/rozvrhel/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+  {
+    "x": 20.2,
+    "y": 16.4,
+    "title": "Třízení učeben",
+    "text": "Učebny se automaticky třídí dle jednotlivých přiřazených budov."
+  },
+  {
+    "x": 48.9,
+    "y": 24.7,
+    "title": "Typ",
+    "text": "Každé učebně lze přiřadit typ, například jestli je všeobecná, jazyková, počítačová apod."
+  }
+]
+    },
+    {
+      "title": "Třídy",
+      "image": "../../assets/screenshots/rozvrhel/08.webp",
+      "alt": "Screenshot aplikace Rozvrhel",
+      "caption": "Nahraj screenshot do assets/screenshots/rozvrhel/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+  {
+    "x": 4.7,
+    "y": 16.6,
+    "title": "Třízení",
+    "text": "Třídy se automaticky seskupují podle přiřazených ročníků"
+  },
+  {
+    "x": 44.7,
+    "y": 30.4,
+    "title": "Obory",
+    "text": "Pokud je celá třída v rámci jednoho oboru, lze už ho zde rovnou přiřadit."
+  }
+]
+    },
+    {
+      "title": "Skupiny",
+      "image": "../../assets/screenshots/rozvrhel/09.webp",
+      "alt": "Screenshot aplikace Rozvrhel",
+      "caption": "Nahraj screenshot do assets/screenshots/rozvrhel/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+  {
+    "x": 5.1,
+    "y": 13.3,
+    "title": "Filtr",
+    "text": "Skupiny lze filtrovat dle oborů"
+  },
+  {
+    "x": 17.5,
+    "y": 20.8,
+    "title": "Seskupování",
+    "text": "Skupiny se automaticky třídí podle přiřazených tříd."
+  }
+]
+    },
+    {
+      "title": "Hodinové bloky",
+      "image": "../../assets/screenshots/rozvrhel/10.webp",
+      "alt": "Screenshot aplikace Rozvrhel",
+      "caption": "Nahraj screenshot do assets/screenshots/rozvrhel/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+  {
+    "x": 26.5,
+    "y": 13.1,
+    "title": "Filtr",
+    "text": "Hodinové bloky se dají filtrovat podle tříd."
+  },
+  {
+    "x": 12.8,
+    "y": 20.6,
+    "title": "Třízení",
+    "text": "Bloky se automaticky seskupují podle tříd."
+  },
+  {
+    "x": 54,
+    "y": 35,
+    "title": "Násobné přiřazení",
+    "text": "Některým blokům lze přiřadit více učitelů, systém pak vyhodnocuje optimální sestavy."
+  }
+]
+    },
+    {
+      "title": "Rozvrh",
+      "image": "../../assets/screenshots/rozvrhel/11.webp",
+      "alt": "Screenshot aplikace Rozvrhel",
+      "caption": "Nahraj screenshot do assets/screenshots/rozvrhel/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+  {
+    "x": 15.6,
+    "y": 13.7,
+    "title": "Verze rozvrhu",
+    "text": "Zde je seznam variant rozvrhu. Lze je přejmenovat, smazat i označit hvězdičkou."
+  },
+  {
+    "x": 45.4,
+    "y": 19.4,
+    "title": "Generování a filtrování",
+    "text": "V této části může uživatel generovat nové varianty, ověřit případné konflikty a upravit nastavení."
+  },
+  {
+    "x": 29.3,
+    "y": 44.6,
+    "title": "Rozvrh",
+    "text": "Rozvrh třídy má přiřazené jednotlivé bloky. Ty lze přesouvat (případná kolize je detekována v reálném čase), či připínat (aby zůstaly při případném přegenerováním na stejném místě)."
+  }
+]
+    },
+    {
+      "title": "Nastavení",
+      "image": "../../assets/screenshots/rozvrhel/12.webp",
+      "alt": "Screenshot aplikace Rozvrhel",
+      "caption": "Nahraj screenshot do assets/screenshots/rozvrhel/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+  {
+    "x": 13.1,
+    "y": 15.6,
+    "title": "Mód",
+    "text": "Přepínání Light/Dark mód"
+  },
+  {
+    "x": 5.7,
+    "y": 45.1,
+    "title": "Další nastavení",
+    "text": "Zde se dostanete na podobrazovky pro nastavení časových rozsahů hodin."
+  },
+  {
+    "x": 4.5,
+    "y": 56.3,
+    "title": "Základní nastavení pro generátor",
+    "text": "Nastavení základního časového rozsahu, kam se má generátor s rozvrhy vejít"
+  }
+]
+    },
+    {
+      "title": "Nastavení",
+      "image": "../../assets/screenshots/rozvrhel/13.webp",
+      "alt": "Screenshot aplikace Rozvrhel",
+      "caption": "Nahraj screenshot do assets/screenshots/rozvrhel/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+  {
+    "x": 15.4,
+    "y": 74,
+    "title": "Správa dat",
+    "text": "Sekce pro import a export dat. Importům lze nastavit kompletní rollback."
+  }
+]
+    },
+    {
+      "title": "Hodiny",
+      "image": "../../assets/screenshots/rozvrhel/14.webp",
+      "alt": "Screenshot aplikace Rozvrhel",
+      "caption": "Nahraj screenshot do assets/screenshots/rozvrhel/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+  {
+    "x": 32.8,
+    "y": 16.4,
+    "title": "Nastavení hodin",
+    "text": "Zde se nastavují rozsahy jednotlivých školních hodinových bloků"
+  }
+]
     }
   ]
 }

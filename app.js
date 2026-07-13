@@ -118,6 +118,8 @@ function renderProjectLinks(links = []) {
 }
 
 function renderScreenToolbar(screen, index) {
+  const hasHotspots = Boolean(screen?.hotspots?.length);
+
   return `
     <div class="screen-toolbar">
       <div>
@@ -125,7 +127,7 @@ function renderScreenToolbar(screen, index) {
       </div>
 
       <div class="screen-actions">
-        ${renderAnnotationToggle(index)}
+        ${hasHotspots ? renderAnnotationToggle(index) : ""}
         <button class="screen-open" type="button" data-open-lightbox="${index}" title="Zvětšit">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M6.995 10.852L5.133 9.008l-3.026 2.98L.062 9.972v5.903h5.987l-2.076-2.047zM9.961.008l2.097 2.087l-3.053 3.033l1.88 1.88l3.057-3.038l1.967 1.996V.008z"/></svg>
         </button>
@@ -218,6 +220,8 @@ function renderHotspots(hotspots, idPrefix) {
 }
 
 function renderLightbox(project, screen) {
+  const hasHotspots = Boolean(screen?.hotspots?.length);
+
   return `
     <div
       class="lightbox ${lightboxOpen ? "is-open" : ""}"
@@ -235,7 +239,7 @@ function renderLightbox(project, screen) {
           </div>
 
           <div class="screen-actions">
-            ${renderAnnotationToggle(activeScreenIndex)}
+            ${hasHotspots ? renderAnnotationToggle(activeScreenIndex) : ""}
             ${renderZoomToggle(Boolean(screen?.image))}
             <button class="lightbox-close" type="button" data-close-lightbox title="Zavřít">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><!-- Icon from Lets Icons by Leonid Tsvetkov - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="round" stroke-width="2" d="M18 6L6 18M6 6l12 12"/></svg>

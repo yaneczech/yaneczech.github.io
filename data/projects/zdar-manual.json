@@ -2,45 +2,122 @@
   "slug": "zdar-manual",
   "title": "Manuál pro digitální implementaci města Žďár nad Sázavou",
   "orderLabel": "04",
-  "type": "digitální manuál / veřejná správa",
-  "role": "UX/UI design, návrh systému, frontend implementace",
-  "annotation": "Digitální manuál, který převádí pravidla městské identity do prakticky použitelných rozhraní.",
-  "intro": "Manuál pro digitální implementaci městské identity. V portfoliu může dobře ukázat schopnost převést pravidla značky do prakticky použitelného digitálního systému.",
-  "context": "U veřejné správy je důležitá srozumitelnost, přístupnost a možnost dlouhodobé správy. Výsledek musí být použitelný i mimo původní autorský dohled.",
-  "decisions": [
-    "Pravidla nejsou jen statický brandbook, ale praktický návod pro digitální prostředí.",
-    "Komponenty a příklady mají pomáhat implementaci, ne jen popisovat vizuální styl.",
-    "Text, navigace a struktura jsou navržené tak, aby byly použitelné pro různé role."
-  ],
-  "implementation": "Projekt je vhodné ukázat přes kombinaci screenshotů a poznámek k tomu, jak se z pravidel stává konkrétní HTML/CSS implementace.",
-  "status": "Pokud se živý projekt později měnil, portfolio může ukazovat stav při předání a jasně ho tak označit.",
+  "annotation": "Pro město Žďár nad Sázavou jsme nad rámec vizuální identity zpracovali i manuál pro jeho digitální implementaci. Manuál je zpracován ve Figmě a jednotlivé bloky už jako jednotlivé komponenty, barvy jako proměnné a předdefinované textové styly, takže je lze importovat do vlastního projektu.",
   "links": [],
   "screens": [
     {
-      "title": "Struktura digitálního manuálu",
-      "image": "",
+      "title": "Úvod",
+      "image": "../../assets/screenshots/zdar/01.webp",
       "alt": "Screenshot manuálu pro digitální implementaci města Žďár nad Sázavou",
-      "caption": "Nahraj screenshot do assets/screenshots/zdar-manual/main.jpg a doplň cestu v JSON souboru projektu.",
-      "hotspots": [
-        {
-          "x": 24,
-          "y": 22,
-          "title": "Navigace manuálu",
-          "text": "Manuál má být nástroj pro práci, proto musí mít rychlou orientaci v pravidlech i příkladech."
-        },
-        {
-          "x": 66,
-          "y": 46,
-          "title": "Překlad identity do UI",
-          "text": "Důležité je ukázat, jak se vizuální identita chová v reálných digitálních komponentech."
-        },
-        {
-          "x": 44,
-          "y": 76,
-          "title": "Dlouhodobá použitelnost",
-          "text": "Systém počítá s tím, že ho budou používat další lidé a obsah se může postupně měnit."
-        }
-      ]
+      "caption": "Nahraj screenshot do assets/screenshots/zdar-manual/main.jpg a doplň cestu v JSON souboru projektu."
+    },
+    {
+      "title": "Použití manuálu",
+      "image": "../../assets/screenshots/zdar/02.webp",
+      "alt": "Screenshot manuálu pro digitální implementaci města Žďár nad Sázavou",
+      "caption": "Nahraj screenshot do assets/screenshots/zdar-manual/main.jpg a doplň cestu v JSON souboru projektu."
+    },
+    {
+      "title": "Přístupnost",
+      "image": "../../assets/screenshots/zdar/03.webp",
+      "alt": "Screenshot manuálu pro digitální implementaci města Žďár nad Sázavou",
+      "caption": "Nahraj screenshot do assets/screenshots/zdar-manual/main.jpg a doplň cestu v JSON souboru projektu."
+    },
+    {
+      "title": "Barvy",
+      "image": "../../assets/screenshots/zdar/04.webp",
+      "alt": "Screenshot manuálu pro digitální implementaci města Žďár nad Sázavou",
+      "caption": "Nahraj screenshot do assets/screenshots/zdar-manual/main.jpg a doplň cestu v JSON souboru projektu."
+    },
+    {
+      "title": "Barevný kontrast",
+      "image": "../../assets/screenshots/zdar/05.webp",
+      "alt": "Screenshot manuálu pro digitální implementaci města Žďár nad Sázavou",
+      "caption": "Nahraj screenshot do assets/screenshots/zdar-manual/main.jpg a doplň cestu v JSON souboru projektu."
+    },
+    {
+      "title": "Mřížka",
+      "image": "../../assets/screenshots/zdar/06.webp",
+      "alt": "Screenshot manuálu pro digitální implementaci města Žďár nad Sázavou",
+      "caption": "Nahraj screenshot do assets/screenshots/zdar-manual/main.jpg a doplň cestu v JSON souboru projektu."
+    },  
+    {
+      "title": "Mezery",
+      "image": "../../assets/screenshots/zdar/07.webp",
+      "alt": "Screenshot manuálu pro digitální implementaci města Žďár nad Sázavou",
+      "caption": "Nahraj screenshot do assets/screenshots/zdar-manual/main.jpg a doplň cestu v JSON souboru projektu."
+    },
+    {
+      "title": "Zaoblení rohů",
+      "image": "../../assets/screenshots/zdar/08.webp",
+      "alt": "Screenshot manuálu pro digitální implementaci města Žďár nad Sázavou",
+      "caption": "Nahraj screenshot do assets/screenshots/zdar-manual/main.jpg a doplň cestu v JSON souboru projektu."
+    },
+    {
+      "title": "Stíny",
+      "image": "../../assets/screenshots/zdar/09.webp",
+      "alt": "Screenshot manuálu pro digitální implementaci města Žďár nad Sázavou",
+      "caption": "Nahraj screenshot do assets/screenshots/zdar-manual/main.jpg a doplň cestu v JSON souboru projektu."
+    },
+    {
+      "title": "Loga",
+      "image": "../../assets/screenshots/zdar/10.webp",
+      "alt": "Screenshot manuálu pro digitální implementaci města Žďár nad Sázavou",
+      "caption": "Nahraj screenshot do assets/screenshots/zdar-manual/main.jpg a doplň cestu v JSON souboru projektu."
+    },
+    {
+      "title": "Ikony",
+      "image": "../../assets/screenshots/zdar/11.webp",
+      "alt": "Screenshot manuálu pro digitální implementaci města Žďár nad Sázavou",
+      "caption": "Nahraj screenshot do assets/screenshots/zdar-manual/main.jpg a doplň cestu v JSON souboru projektu."
+    },
+    {
+      "title": "Textové styly",
+      "image": "../../assets/screenshots/zdar/12.webp",
+      "alt": "Screenshot manuálu pro digitální implementaci města Žďár nad Sázavou",
+      "caption": "Nahraj screenshot do assets/screenshots/zdar-manual/main.jpg a doplň cestu v JSON souboru projektu."
+    },
+    {
+      "title": "Speciální textové styly",
+      "image": "../../assets/screenshots/zdar/13.webp",
+      "alt": "Screenshot manuálu pro digitální implementaci města Žďár nad Sázavou",
+      "caption": "Nahraj screenshot do assets/screenshots/zdar-manual/main.jpg a doplň cestu v JSON souboru projektu."
+    },
+    {
+      "title": "Odstavec",
+      "image": "../../assets/screenshots/zdar/14.webp",
+      "alt": "Screenshot manuálu pro digitální implementaci města Žďár nad Sázavou",
+      "caption": "Nahraj screenshot do assets/screenshots/zdar-manual/main.jpg a doplň cestu v JSON souboru projektu."
+    },
+    {
+      "title": "Odkazy",
+      "image": "../../assets/screenshots/zdar/15.webp",
+      "alt": "Screenshot manuálu pro digitální implementaci města Žďár nad Sázavou",
+      "caption": "Nahraj screenshot do assets/screenshots/zdar-manual/main.jpg a doplň cestu v JSON souboru projektu."
+    },
+    {
+      "title": "Tlačítka",
+      "image": "../../assets/screenshots/zdar/16.webp",
+      "alt": "Screenshot manuálu pro digitální implementaci města Žďár nad Sázavou",
+      "caption": "Nahraj screenshot do assets/screenshots/zdar-manual/main.jpg a doplň cestu v JSON souboru projektu."
+    },
+    {
+      "title": "Formuláře",
+      "image": "../../assets/screenshots/zdar/17.webp",
+      "alt": "Screenshot manuálu pro digitální implementaci města Žďár nad Sázavou",
+      "caption": "Nahraj screenshot do assets/screenshots/zdar-manual/main.jpg a doplň cestu v JSON souboru projektu."
+    },  
+    {
+      "title": "Formulářový blok",
+      "image": "../../assets/screenshots/zdar/18.webp",
+      "alt": "Screenshot manuálu pro digitální implementaci města Žďár nad Sázavou",
+      "caption": "Nahraj screenshot do assets/screenshots/zdar-manual/main.jpg a doplň cestu v JSON souboru projektu."
+    },
+    {
+      "title": "Příklad bloků",
+      "image": "../../assets/screenshots/zdar/19.webp",
+      "alt": "Screenshot manuálu pro digitální implementaci města Žďár nad Sázavou",
+      "caption": "Nahraj screenshot do assets/screenshots/zdar-manual/main.jpg a doplň cestu v JSON souboru projektu."
     }
   ]
 }

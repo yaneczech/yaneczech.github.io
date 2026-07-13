@@ -2,45 +2,164 @@
   "slug": "jeleni-v-zeleni",
   "title": "Jeleni v zeleni",
   "orderLabel": "05",
-  "type": "webová implementace",
-  "role": "UX/UI design, vizuální návrh, frontend implementace",
-  "annotation": "Autorsky kontrolovaná webová realizace s důrazem na vizuální charakter a přesnou implementaci.",
-  "intro": "Implementace, které máš nejvíc pod kontrolou. V portfoliu mohou fungovat jako čistá ukázka autorského designu, frontend řemesla a dokončeného vizuálního detailu.",
-  "context": "Projekt je vhodný pro ukázku toho, jak se vizuální záměr drží až do produkčního výsledku bez výrazného rozmělnění uživatelskými zásahy.",
-  "decisions": [
-    "Vizuální styl je vedený konzistentně od návrhu po implementaci.",
-    "Obsah, typografie a layout mají držet charakter projektu, ne jen obecnou webovou šablonu.",
-    "Dobrá ukázka detailu v HTML/CSS: rytmus, responzivita, mikrointerakce a obrazový materiál."
-  ],
-  "implementation": "U tohoto projektu má smysl ukázat více screenshotů: úvodní plochu, detail obsahu, mobilní variantu a případně konkrétní CSS/interaction rozhodnutí.",
-  "status": "Autorsky nejlépe kontrolovaná realizace.",
+  "annotation": "Jednoduchá webová aplikace pro vytváření a tisk dárkových poukazů pro květinářství Jeleni v zeleni mé manželky. Aplikace umožňuje správu různých typů poukazů, hromadný tisk do PDF. Každý poukaz má QR kód, po jehož naskenování se uživatel dostane do přehledu stavu hodnoty poukazu. Poukaz se tak dá jednoduše čerpat pouze částečně. PHP, JavaScript & upravený Bootstrap 5.",
   "links": [],
   "screens": [
     {
-      "title": "Webová realizace",
-      "image": "",
+      "title": "Úvodní obrazovka",
+      "image": "../../assets/screenshots/jeleni/01.webp",
       "alt": "Screenshot projektu Jeleni v zeleni",
-      "caption": "Nahraj screenshot do assets/screenshots/jeleni-v-zeleni/main.jpg a doplň cestu v JSON souboru projektu.",
+      "caption": "Nahraj screenshot do assets/screenshots/jeleni/main.jpg a doplň cestu v JSON souboru projektu.",
       "hotspots": [
-        {
-          "x": 30,
-          "y": 28,
-          "title": "Vizuální charakter",
-          "text": "Projekt může ukázat práci s atmosférou bez ztráty čistoty a použitelnosti."
-        },
-        {
-          "x": 58,
-          "y": 48,
-          "title": "Implementační přesnost",
-          "text": "Tady má smysl ukázat, že výsledný web drží návrh: typografie, spacing, breakpointy, detaily."
-        },
-        {
-          "x": 74,
-          "y": 72,
-          "title": "Kontrola výsledku",
-          "text": "Protože je projekt víc pod tvou kontrolou, může sloužit jako silná závěrečná case study."
-        }
-      ]
+  {
+    "x": 70.8,
+    "y": 7.8,
+    "title": "Tlačítka",
+    "text": "Export do CSV pro účetnictví a tlačítko pro tvorbu nového poukazu."
+  },
+  {
+    "x": 32.6,
+    "y": 12.9,
+    "title": "Statistika",
+    "text": "Zákaldní statistický přehled"
+  },
+  {
+    "x": 27.9,
+    "y": 19.3,
+    "title": "Filtrování",
+    "text": "Poukazy lze filtrovat podle více paprametrů"
+  },
+  {
+    "x": 20.2,
+    "y": 24.7,
+    "title": "Poukazy",
+    "text": "Položky poukazů jsou automaticky tříděny podle data vytvoření, mají i indikaci, zda-li byly exportovány pro tisk."
+  },
+  {
+    "x": 30.7,
+    "y": 89.6,
+    "title": "Legenda",
+    "text": "Zde se nachází bližší popisky stavů"
+  }
+]
+    },
+    {
+      "title": "Tvorba nového poukazu",
+      "image": "../../assets/screenshots/jeleni/02.webp",
+      "alt": "Screenshot projektu Jeleni v zeleni",
+      "caption": "Nahraj screenshot do assets/screenshots/jeleni/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+  {
+    "x": 25.9,
+    "y": 32.3,
+    "title": "Nastavení nového poukazu",
+    "text": "Nový poukaz lze nastavit v několika typech, lze si i vložit více šablon pro tisk (přes správu šablon, pomocí SVG)"
+  },
+  {
+    "x": 1.9,
+    "y": 46.9,
+    "title": "Dávkové vytváření",
+    "text": "Lze nastavit vytvoření více poukazů se stejnými parametry naráz"
+  },
+  {
+    "x": 32.4,
+    "y": 66.7,
+    "title": "Rychlé nastavení data platnosti",
+    "text": "Pomocí rychlých tlačítek lze okamžitě nastavit standardní data platnosti."
+  }
+]
+    },
+    {
+      "title": "Detail poukazu",
+      "image": "../../assets/screenshots/jeleni/03.webp",
+      "alt": "Screenshot projektu Jeleni v zeleni",
+      "caption": "Nahraj screenshot do assets/screenshots/jeleni/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+  {
+    "x": 2.1,
+    "y": 29,
+    "title": "Základní informace o poukazech",
+    "text": "Zde je zobrazena základní statistika poukazu"
+  },
+  {
+    "x": 31.2,
+    "y": 53.8,
+    "title": "QR kód",
+    "text": " Ten samý, který se nachází i na poukazu. Vedle je i přímý odkaz."
+  },
+  {
+    "x": 16.7,
+    "y": 75.5,
+    "title": "Trasnakce",
+    "text": "Přehled veškerých transakcí na poukazu."
+  },
+  {
+    "x": 56,
+    "y": 19.9,
+    "title": "Kopírovat odkaz pro klienta",
+    "text": "Lze kopírovat kód pro veřejný náhled stavu (balancu) poukazu pro zaslání pomocí zprávy."
+  }
+]
+    },
+    {
+      "title": "Tisk poukazů",
+      "image": "../../assets/screenshots/jeleni/04.webp",
+      "alt": "Screenshot projektu Jeleni v zeleni",
+      "caption": "Nahraj screenshot do assets/screenshots/jeleni/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+  {
+    "x": 19.5,
+    "y": 6.9,
+    "title": "Detaily poukazu",
+    "text": "Podrobnosti o poukazu"
+  },
+  {
+    "x": 47.5,
+    "y": 39.2,
+    "title": "Náhled poukazu",
+    "text": "Náhled poukazu/poukazů k tisku."
+  },
+  {
+    "x": 79.9,
+    "y": 7.1,
+    "title": "Tisk",
+    "text": "Otevírá dialogové okno pro tisk, lze nastavit jestli bude verze na ořez, nebo čistá, například do mailu."
+  }
+]
+    },
+    {
+      "title": "Přehled poukazu",
+      "image": "../../assets/screenshots/jeleni/05.webp",
+      "alt": "Screenshot projektu Jeleni v zeleni",
+      "caption": "Nahraj screenshot do assets/screenshots/jeleni/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+  {
+    "x": 49.8,
+    "y": 42.2,
+    "title": "Dostupná hodnota",
+    "text": "Po naskenování QR na poukazu se uživatel dostane na tuto stránku, kde se nachází přehled zbývající hodnoty, stav poukazu, platnost a seznam transkací."
+  },
+  {
+    "x": 49.9,
+    "y": 65,
+    "title": "Možnosti pro administrátora",
+    "text": "Pokud je uživatel přihlášen jako administrátor, může rovnou změnit datum platnosti (tím se i aktivuje neaktivní poukaz)."
+  }
+]
+    },
+    {
+      "title": "Přehled poukazu pro koncového zákazníka",
+      "image": "../../assets/screenshots/jeleni/06.webp",
+      "alt": "Screenshot projektu Jeleni v zeleni",
+      "caption": "Nahraj screenshot do assets/screenshots/jeleni/main.jpg a doplň cestu v JSON souboru projektu.",
+      "hotspots": [
+  {
+    "x": 50.2,
+    "y": 70.6,
+    "title": "Základní přehled",
+    "text": "Běžný uživatel uvidí pouze zbývající hodnotu poukazu, stav, platnost a případné provedené trasnakce."
+  }
+]
     }
   ]
 }
