@@ -66,7 +66,7 @@ function renderProjectDetail() {
       ${screens
         .map(
           (item, index) => `
-            <section class="screen-section" aria-label="${escapeHtml(item?.title || `Screenshot ${index + 1}`)}">
+            <section class="screen-section" data-screen-section="${index}" aria-label="${escapeHtml(item?.title || `Screenshot ${index + 1}`)}">
               ${renderScreenFrame(item, `inline-${index}`, index)}
               ${renderScreenToolbar(item, index)}
             </section>
@@ -144,7 +144,9 @@ function areAnnotationsVisible(index = activeScreenIndex) {
 }
 
 function toggleScreenAnnotations(index = activeScreenIndex) {
-  annotationVisibility.set(getScreenKey(index), !areAnnotationsVisible(index));
+  const nextState = !areAnnotationsVisible(index);
+  annotationVisibility.set(getScreenKey(index), nextState);
+  return nextState;
 }
 
 function renderAnnotationToggle(index = activeScreenIndex) {
@@ -172,7 +174,7 @@ function renderScreenFrame(screen, idPrefix = "inline", index = activeScreenInde
   const hotspots = screen?.hotspots || [];
 
   return `
-    <figure class="screen-frame ${areAnnotationsVisible(index) ? "" : "hide-annotations"}">
+    <figure class="screen-frame ${areAnnotationsVisible(index) ? "" : "hide-annotations"}" data-screen-index="${index}">
       <div class="screen-canvas ${hasImage ? "has-image" : ""}">
         ${
           hasImage
@@ -284,8 +286,9 @@ function renderPlaceholderScreen() {
 function bindDetailInteractions() {
   document.querySelectorAll("[data-toggle-annotations]").forEach((toggleButton) => {
     toggleButton.addEventListener("click", (event) => {
-      toggleScreenAnnotations(Number(event.currentTarget.dataset.screenIndex) || 0);
-      renderProjectDetail();
+      const index = Number(event.currentTarget.dataset.screenIndex) || 0;
+      toggleScreenAnnotations(index);
+      syncAnnotationState(index);
     });
   });
 
@@ -318,6 +321,21 @@ function bindDetailInteractions() {
       button.setAttribute("aria-expanded", String(!isExpanded));
       button.classList.toggle("is-open", !isExpanded);
     });
+  });
+}
+
+function syncAnnotationState(index = activeScreenIndex) {
+  const isVisible = areAnnotationsVisible(index);
+
+  document.querySelectorAll(`[data-toggle-annotations][data-screen-index="${index}"]`).forEach((toggleButton) => {
+    toggleButton.classList.toggle("is-on", isVisible);
+    toggleButton.setAttribute("aria-pressed", String(isVisible));
+    const state = toggleButton.querySelector(".annotation-toggle__state");
+    if (state) state.textContent = isVisible ? "zapnuto" : "vypnuto";
+  });
+
+  document.querySelectorAll(`.screen-frame[data-screen-index="${index}"]`).forEach((frame) => {
+    frame.classList.toggle("hide-annotations", !isVisible);
   });
 }
 

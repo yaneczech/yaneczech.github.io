@@ -2,7 +2,7 @@
   "slug": "vijual-bake-studio",
   "title": "Vijual Bake Studio",
   "orderLabel": "02",
-  "annotation": "Při tvorbě Vijualu jsem narazil na bod, kdy jsem potřeboval implementaci uzlu pro přehrávání videa. Zjistil jsem ale, že je problematické video cíleně ovládat v rámci parametrickcýh nodů. Tak jsem přišel s vlastní verzí kontejneru pro videa, který by umožnil to, co například formát REX v DAW Reason, a sice že klip má definované bloky a SW k nim může ad hoc přistupovat dle potřeby. Formát je kombinací komprimovaného videa a json definice časových bodů a jejich kontextu. Celé zabalené v ZIP formátu. Definice formátu je volně na Githubu, tento SW pomáhá k vytváření konkrétních videokontejnerů.",
+  "annotation": "Při tvorbě Vijualu jsem narazil na bod, kdy jsem potřeboval implementaci uzlu pro přehrávání videa. Zjistil jsem ale, že je problematické video cíleně ovládat v rámci parametrickcýh nodů. Tak jsem přišel s vlastní verzí kontejneru pro videa, který by umožnil to, co například formát REX v DAW Reason, a sice že klip má definované bloky a SW k nim může ad hoc přistupovat dle potřeby. Formát je kombinací komprimovaného videa a json definice časových bodů a jejich kontextu. Celé zabalené v ZIP formátu. Definice formátu je volně na Githubu, tento SW pomáhá k vytváření konkrétních videokontejnerů. Je potřeba doladit chyby v CZ lokalizaci, drobné detaily a „učesat“ exportní screen. UI a barevné schéma navazuje na Vijual.",
   "links": [
     {
       "label": "GitHub: yaneczech/vjb-format",
@@ -55,108 +55,114 @@
 ]
     },
      {
-      "title": "Úvodní obrazovka",
+      "title": "Markery",
       "image": "../../assets/screenshots/bakery/02.webp",
       "alt": "Screenshot aplikace Vijual Bake Studio",
       "caption": "Nahraj screenshot do assets/screenshots/vijual-bake-studio/main.jpg a doplň cestu v JSON souboru projektu.",
       "hotspots": [
-        {
-          "x": 28,
-          "y": 30,
-          "title": "Kontinuita systému",
-          "text": "Rozhraní navazuje na Vijual, ale nepředstírá, že jde o stejný typ práce."
-        },
-        {
-          "x": 72,
-          "y": 36,
-          "title": "Priorita akcí",
-          "text": "Důležité akce mají jasnou pozici a viditelnost bez nutnosti přidávat další vizuální vrstvy."
-        },
-        {
-          "x": 54,
-          "y": 68,
-          "title": "Stavy a zpětná vazba",
-          "text": "Stav procesu je součást návrhu, ne až textová hláška přidaná na konci implementace."
-        }
-      ]
+  {
+    "x": 18,
+    "y": 35.6,
+    "title": "Náhled klipu",
+    "text": "Zde se zobrazuje přehrávání klipu v reálném čase. Fialový stín okolo indikuje, že je zapnutý Warp režim."
+  },
+  {
+    "x": 48.8,
+    "y": 67.3,
+    "title": "Ovládací panel",
+    "text": "Transportní ovládání, včetně indikace zapnutého Warp módu, posun po snímcích a v pravé části tlačítka pro přidávání markerů. Jsou dva typy – Cue, který slouží jako zarážka pro přehrávací hlavu klipu, a Quantize, který umožňuje synchronizovat obsah klipu s hudbou."
+  },
+  {
+    "x": 36,
+    "y": 82.2,
+    "title": "Časová osa s markery",
+    "text": "Zde jsou defualtně dva Cue markery – Intro a End – pro začátek a konec. Markery lze pak označovat a posouvat dle potřeby. Popisky markerů před koncem automaticky mění zarovnání na druhou stranu, aby nezůstaly skryty."
+  },
+  {
+    "x": 39.1,
+    "y": 94.1,
+    "title": "Přizpůsobení",
+    "text": "Nástroje pro synchronizaci se zvukem, včetně generovaného metronomu. Je zde i funkce automatického nastavení BPM aby co nejlépe odpovídalo délce klipu. V pravé části pak ovládání zobrazení osy s markery (zoom a zapínání/vypínání visibility)"
+  },
+  {
+    "x": 90,
+    "y": 17.2,
+    "title": "Nastavení zvoleného markeru",
+    "text": "Zde lze upravovat nastavení zvolenéo markeru, lze vytvořit i hybridní."
+  },
+  {
+    "x": 88.6,
+    "y": 59.6,
+    "title": "Seznam všech markerů",
+    "text": "Zde je uveden seznam všech markerů klipu v časové posloupnosti."
+  }
+]
     },
      {
-      "title": "Úvodní obrazovka",
+      "title": "Bake",
       "image": "../../assets/screenshots/bakery/03.webp",
       "alt": "Screenshot aplikace Vijual Bake Studio",
       "caption": "Nahraj screenshot do assets/screenshots/vijual-bake-studio/main.jpg a doplň cestu v JSON souboru projektu.",
       "hotspots": [
-        {
-          "x": 28,
-          "y": 30,
-          "title": "Kontinuita systému",
-          "text": "Rozhraní navazuje na Vijual, ale nepředstírá, že jde o stejný typ práce."
-        },
-        {
-          "x": 72,
-          "y": 36,
-          "title": "Priorita akcí",
-          "text": "Důležité akce mají jasnou pozici a viditelnost bez nutnosti přidávat další vizuální vrstvy."
-        },
-        {
-          "x": 54,
-          "y": 68,
-          "title": "Stavy a zpětná vazba",
-          "text": "Stav procesu je součást návrhu, ne až textová hláška přidaná na konci implementace."
-        }
-      ]
+  {
+    "x": 28.6,
+    "y": 25.2,
+    "title": "Nastavení Bake",
+    "text": "Pro plynulé přehrávání a funkce sycnronizace je potřeba vyšší framerate, alespoň 120 fps. Standardně klipy mají kolem 24 fps. Bake Studio využívá opensource knihoven pro AI interpolaci snímků, které chybějící snímky dopočítají. Lze volit i mezi dvěma typy kodeků – HAP a ProRes, které mají oba velmi dobrou operabilitu a okamžitý přístup k snímkům na časové ose."
+  },
+  {
+    "x": 23.5,
+    "y": 66.1,
+    "title": "Pečení",
+    "text": "Po nastavení parametrů lze nastavit i výstupní složku. SW nabízí i odhad výsledné velikosti souboru."
+  },
+  {
+    "x": 89.8,
+    "y": 17.5,
+    "title": "Sumář",
+    "text": "Zde je sumář nastavení pro Bake."
+  }
+]
     },
      {
-      "title": "Úvodní obrazovka",
+      "title": "Bake progress",
       "image": "../../assets/screenshots/bakery/04.webp",
       "alt": "Screenshot aplikace Vijual Bake Studio",
       "caption": "Nahraj screenshot do assets/screenshots/vijual-bake-studio/main.jpg a doplň cestu v JSON souboru projektu.",
       "hotspots": [
-        {
-          "x": 28,
-          "y": 30,
-          "title": "Kontinuita systému",
-          "text": "Rozhraní navazuje na Vijual, ale nepředstírá, že jde o stejný typ práce."
-        },
-        {
-          "x": 72,
-          "y": 36,
-          "title": "Priorita akcí",
-          "text": "Důležité akce mají jasnou pozici a viditelnost bez nutnosti přidávat další vizuální vrstvy."
-        },
-        {
-          "x": 54,
-          "y": 68,
-          "title": "Stavy a zpětná vazba",
-          "text": "Stav procesu je součást návrhu, ne až textová hláška přidaná na konci implementace."
-        }
-      ]
+  {
+    "x": 17.4,
+    "y": 70,
+    "title": "Bake progress",
+    "text": "Během bake procesu se zobrazuje průběh jednak indikací fáze, procentuální pozicí, progress barem, pozicí snímků a ETC."
+  }
+]
     },
      {
-      "title": "Úvodní obrazovka",
+      "title": "Export",
       "image": "../../assets/screenshots/bakery/05.webp",
       "alt": "Screenshot aplikace Vijual Bake Studio",
       "caption": "Nahraj screenshot do assets/screenshots/vijual-bake-studio/main.jpg a doplň cestu v JSON souboru projektu.",
       "hotspots": [
-        {
-          "x": 28,
-          "y": 30,
-          "title": "Kontinuita systému",
-          "text": "Rozhraní navazuje na Vijual, ale nepředstírá, že jde o stejný typ práce."
-        },
-        {
-          "x": 72,
-          "y": 36,
-          "title": "Priorita akcí",
-          "text": "Důležité akce mají jasnou pozici a viditelnost bez nutnosti přidávat další vizuální vrstvy."
-        },
-        {
-          "x": 54,
-          "y": 68,
-          "title": "Stavy a zpětná vazba",
-          "text": "Stav procesu je součást návrhu, ne až textová hláška přidaná na konci implementace."
-        }
-      ]
+  {
+    "x": 17,
+    "y": 16.9,
+    "title": "Parametry exportu",
+    "text": "Přehled technických dat balíčku"
+  },
+  {
+    "x": 20.5,
+    "y": 54.9,
+    "title": "Tlačítka",
+    "text": "Tlačítka pro přímý export do VJB formátu a pro otevření složky s balíčkem v systémovém prohlížeči souborů."
+  },
+  {
+    "x": 18.6,
+    "y": 75.4,
+    "title": "Metadata",
+    "text": "Náhled JSON metadat"
+  }
+]
     }
   ]
 }
